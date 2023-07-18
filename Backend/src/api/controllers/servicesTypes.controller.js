@@ -36,6 +36,7 @@ const create = async (req, res, next) => {
 
 //--------- UPDATE ---------//
 const update = async (req, res, next) => {
+  //Recogemso el id del tipo de servicio que queremos actualizar
   try {
     await ServiceType.syncIndexes();
     const patchServiceType = new ServiceType(req.body);
