@@ -77,7 +77,7 @@ const update = async (req, res, next) => {
 };
 
 //--------- DELETE ---------//
-//Hay que revisar este, ¿porque cuando se borra un tipo de servicio que pasa con todos los servicios que hay dentro?
+//FALTA: No se puede borrar si existe un servicio dentro del tipo que queremos borrar, lo primero que miramos.
 //https://github.com/pedroleni/NODE_PT_JULIO_NEOLAND/blob/main/20-POPULATE/src/api/Calendar/route/calendar.route.js -> DELETE
 const deleteServiceType = async (req, res, next) => {
   try {
@@ -99,6 +99,8 @@ const deleteServiceType = async (req, res, next) => {
 };
 
 //--------- GET ALL SERVICE TYPE ---------//
+
+//--------- GET BY ID SERVICE TYPE ---------//
 
 module.exports = {
   create,

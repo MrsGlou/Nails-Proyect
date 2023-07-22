@@ -392,10 +392,25 @@ const update = async (req, res, next) => {
   } catch (error) {
     if (req.file) deleteImgCloudinary(catchImg);
     return next(
-      setError(
-        500 || error.code,
-        error.message || 'General error update client'
-      )
+      setError(500 || error.code, error.message || 'General error update user')
+    );
+  }
+};
+
+//--------- DELETE USER ---------//
+const deleteUser = async (req, res, next) => {
+  try {
+    const { _id } = req.user;
+    await User.findByIdAndDelete(_id);
+    if (await User.findById(_id)) {
+      return res.status(404).json('Dont delete');
+    } else {
+      deleteImgCloudinary(req.user.image);
+      return res.status(200).json('ok delete');
+    }
+  } catch (error) {
+    return next(
+      setError(500 || error.code, error.message || 'General error delete user')
     );
   }
 };
@@ -409,4 +424,5 @@ module.exports = {
   sendPassword,
   changePassword,
   update,
+  deleteUser,
 };

@@ -14,7 +14,7 @@ const create = async (req, res, next) => {
     });
 
     if (!serviceType) {
-      return res.status(404).json({ error: 'Service Type dont found' });
+      return res.status(404).json('Service Type not found');
     }
 
     const newService = new Service({
@@ -57,7 +57,7 @@ const create = async (req, res, next) => {
 };
 
 //--------- UPDATE SERVICE ---------//
-//FALTA : si se actualiza el tipo de servicio que se actualicen los tipos de servicio tmb
+//FALTA : si se actualiza el tipo de servicio que se actualicen los tipos de servicio tmb en el caso de que cambie
 const update = async (req, res, next) => {
   try {
     await Service.syncIndexes();
@@ -70,7 +70,7 @@ const update = async (req, res, next) => {
       const updateService = await Service.findById(id);
 
       if (!updateService) {
-        return res.status(404).json({ error: 'Servicio no encontrado' });
+        return res.status(404).json('Service not found');
       }
       const updateKeys = Object.keys(req.body);
       const testUpdate = [];
@@ -100,14 +100,72 @@ const update = async (req, res, next) => {
 };
 
 //--------- DELETE SERVICE ---------//
-
+//Cuando se borre servicio que se borre tambien de los tipos de servicios
+const deleteService = async (req, res, next) => {
+  try {
+    const { _id } = req.service;
+    await Service.findByIdAndDelete(_id);
+    if (await Service.findById(_id)) {
+      return res.status(404).json('Not delete service');
+    } else {
+      await ServiceType.updateMany(
+        { services: _id },
+        { $pull: { services: _id } }
+      );
+      return res.status(200).json('Ok delete service');
+    }
+  } catch (error) {
+    return next(
+      setError(
+        500 || error.code,
+        error.message || 'General error delete services'
+      )
+    );
+  }
+};
 //--------- GET ALL SERVICE ---------//
+const getAll = async (req, res, next) => {
+  try {
+    const servicesAll = await Service.find();
+    if (servicesAll) {
+      return res.status(200).json(servicesAll);
+    } else {
+      return res.status(404).json('Faliled GetAll controller to services');
+    }
+  } catch (error) {
+    return next(
+      setError(
+        500 || error.code,
+        error.message || 'General error get all services'
+      )
+    );
+  }
+};
 
 //--------- GET BY ID SERVICE ---------//
-
-//--------- GET BY TYPE SERVICE ---------//
+const getByID = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const serviceID = await Service.findById(id).populate('type');
+    if (serviceID) {
+      return res.status(200).json(serviceID);
+    } else {
+      return res.status(404).json('Error controller getByIDEvent');
+    }
+  } catch (error) {
+    return next(
+      setError(
+        500 || error.code,
+        error.message || 'General error get by ID services'
+      )
+    );
+  }
+};
 
 module.exports = {
   create,
   update,
+  deleteService,
+  getAll,
+  getByID,
 };

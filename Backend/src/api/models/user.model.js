@@ -27,6 +27,8 @@ const UserSchema = new Schema(
     image: { type: String },
     confirmationCode: { type: Number, required: true },
     validated: { type: Boolean, default: false },
+    journeyStart: { type: Date },
+    journeyTime: { type: Number },
     calendar: { type: mongoose.Schema.Types.ObjectId, ref: 'Calendar' },
   },
   {
