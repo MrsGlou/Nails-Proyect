@@ -7,7 +7,7 @@ dotenv.config();
 const create = async (req, res, next) => {
   try {
     await Appointment.syncIndexes();
-    //1. Recogemos todos los servicios y calculamos el tiempo que debe durar la cita sumandolos 
+    //1. Recogemos todos los servicios y calculamos el tiempo que debe durar la cita sumandolos
     //2. Revisamos las citas programadas(GET ALL -> appointment x calendario) En este punto hacenos tmb el 4 al recibirlas.
     //3. Obtenemos hora y fecha actual
     //4. Ordena las citas programadas por fecha()
@@ -31,8 +31,8 @@ const create = async (req, res, next) => {
 //--------- GET BY ID ---------//
 const getByID = async (req, res, next) => {
   try {
-    const {id} = req. params;
-    const appointmentID = await Appointment.findById(id).populate("calendar")
+    const { id } = req.params;
+    const appointmentID = await Appointment.findById(id).populate('calendar');
   } catch (error) {
     return next(
       setError(
@@ -41,7 +41,7 @@ const getByID = async (req, res, next) => {
       )
     );
   }
-}
+};
 
 module.exports = {
   create,
