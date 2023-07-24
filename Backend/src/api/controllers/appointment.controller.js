@@ -24,15 +24,47 @@ const create = async (req, res, next) => {
   }
 };
 //--------- MODIFY APPOINTMENT ---------//
+
 //--------- VERIFY APPOINTMENT ---------//
+
 //--------- CLOSED APPOINTMENT ---------//
+
 //--------- DELETE APPOINTMENT ---------//
+
 //--------- GET BY EMAIL APPOINTMENT ---------//
+const getByEmail = async (req, res, next) => {
+  try {
+    const { email } = req.body;
+    const appointmentByEmail = await Appointment.find({ email }).populate(
+      'calendar'
+    );
+    if (appointmentByEmail) {
+      return res.status(200).json({ appointmentByEmail });
+    } else {
+      return res
+        .status(404)
+        .json('Error to controller getByEamil Appointments');
+    }
+  } catch (error) {
+    return next(
+      setError(
+        500 || error.code,
+        error.message || 'General error get by Email appointment'
+      )
+    );
+  }
+};
+
 //--------- GET BY ID ---------//
 const getByID = async (req, res, next) => {
   try {
     const { id } = req.params;
     const appointmentID = await Appointment.findById(id).populate('calendar');
+    if (appointmentID) {
+      return res.status(200).json(appointmentID);
+    } else {
+      return res.status(404).json('Error controller getByIDAppointment');
+    }
   } catch (error) {
     return next(
       setError(
@@ -45,5 +77,6 @@ const getByID = async (req, res, next) => {
 
 module.exports = {
   create,
+  getByEmail,
   getByID,
 };
