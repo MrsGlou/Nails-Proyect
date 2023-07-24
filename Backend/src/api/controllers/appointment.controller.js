@@ -45,4 +45,5 @@ const getByID = async (req, res, next) => {
 
 module.exports = {
   create,
+  getByID,
 };

@@ -403,10 +403,10 @@ const deleteUser = async (req, res, next) => {
     const { _id } = req.user;
     await User.findByIdAndDelete(_id);
     if (await User.findById(_id)) {
-      return res.status(404).json('Dont delete');
+      return res.status(404).json('Dont delete user');
     } else {
       deleteImgCloudinary(req.user.image);
-      return res.status(200).json('ok delete');
+      return res.status(200).json('Ok delete user');
     }
   } catch (error) {
     return next(
