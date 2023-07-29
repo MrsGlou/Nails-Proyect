@@ -134,6 +134,21 @@ const verify = async (req, res, next) => {
       },
     });
 
+    const mailOptions = {
+      from: 'tu_usuario@example.com',
+      to: appointment.email,
+      subject: 'Confirmación de cita',
+      text: `Estimado cliente:
+      Esta es una confirmación de su cita del día ${
+        appointment.appointmentStart
+      }.        
+      Para verificar su cita, haga clic en el siguiente enlace: 
+      ${'/appointment/verify/:id'}
+      Gracias,
+      El equipo de citas
+    `,
+    };
+
     const appointment = await Appointment.findById(id);
     if (!appointment) {
       return res.status(404).json('Appointment not found');
@@ -141,18 +156,6 @@ const verify = async (req, res, next) => {
     if (appointment.state === 'verify') {
       return res.json({ message: 'La cita ya fue validada por el cliente.' });
     } else {
-      const mailOptions = {
-        from: 'tu_usuario@example.com',
-        to: appointment.email,
-        subject: 'Confirmación de cita',
-        text: `Estimado cliente:
-        Esta es una confirmación de su cita del día ${appointment.appointmentStart}.        
-        Para verificar su cita, haga clic en el siguiente enlace: 
-        ${appointment.verifyUrl}
-        Gracias,
-        El equipo de citas
-      `,
-      };
       try {
         await transporter.sendMail(mailOptions);
         appointment.validated = true;
@@ -174,6 +177,8 @@ const verify = async (req, res, next) => {
     );
   }
 };
+
+const sendVerify = async (req, res, next) => {};
 
 //--------- CLOSED APPOINTMENT ---------//
 
@@ -332,6 +337,7 @@ const getByID = async (req, res, next) => {
 module.exports = {
   create,
   update,
+  verify,
   deleteAppointment,
   getDisponibilityAppointment,
   getAll,
