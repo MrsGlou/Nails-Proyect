@@ -415,6 +415,42 @@ const deleteUser = async (req, res, next) => {
   }
 };
 
+//--------- GET ALL USER ---------//
+const getAll = async (req, res, next) => {
+  try {
+    const allUsers = await User.find();
+    if (allUsers) {
+      return res.status(200).json(allUsers);
+    } else {
+      return res.status(404).json('Failed get all Users');
+    }
+  } catch (error) {
+    return next(
+      setError(500 || error.code, error.message || 'General error get all user')
+    );
+  }
+};
+
+//--------- GET BY ID USER ---------//
+const getById = async (req, res, next) => {
+  try {
+    const { id } = req.params;
+    const userById = await User.findById(id);
+    if (userById) {
+      res.status(200).json(userById);
+    } else {
+      res.status(404).json('Failed get user by Id');
+    }
+  } catch (error) {
+    return next(
+      setError(
+        500 || error.code,
+        error.message || 'General error get by id user'
+      )
+    );
+  }
+};
+
 module.exports = {
   register,
   validatedUser,
@@ -425,4 +461,6 @@ module.exports = {
   changePassword,
   update,
   deleteUser,
+  getAll,
+  getById,
 };

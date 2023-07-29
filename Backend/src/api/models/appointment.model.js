@@ -26,7 +26,8 @@ const AppointmentSchema = new Schema(
     appointmentStart: { type: Date, required: true },
     appointmentEnd: { type: Date },
     totalTime: { type: Number },
-    calendar: { type: mongoose.Schema.Types.ObjectId, ref: 'Calendar' },
+    totalPrice: { type: Number },
+    user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     service: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Service' }],
   },
   {
