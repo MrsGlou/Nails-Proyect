@@ -9,33 +9,22 @@ const create = async (req, res, next) => {
   try {
     await Service.syncIndexes();
     //Buscamos si el tipo de servicio existe
-    const serviceType = await ServiceType.findOne({
-      name: req.body.ServiceType,
+    const serviceExists = await Service.findOne({
+      name: req.body.name,
     });
 
-    if (!serviceType) {
-      return res.status(404).json('Service Type not found');
+    if (serviceExists) {
+      return res.status(409).json('This service already exists');
     }
 
     const newService = new Service({
       ...req.body,
-      type: serviceType._id,
     });
 
     try {
       const postNewService = await newService.save();
 
       if (postNewService) {
-        try {
-          //Guardamos el servicio nuevo en los tipos de servicio
-          serviceType.services.push(newService._id);
-          await ServiceType.findByIdAndUpdate(
-            req.body.serviceType._id,
-            serviceType._id
-          );
-        } catch (error) {
-          return next(error);
-        }
         return res.status(200).json({
           service: postNewService,
           updateServiceType: await serviceType
@@ -57,7 +46,6 @@ const create = async (req, res, next) => {
 };
 
 //--------- UPDATE SERVICE ---------//
-//FALTA : si se actualiza el tipo de servicio que se actualicen los tipos de servicio tmb en el caso de que cambie
 const update = async (req, res, next) => {
   try {
     await Service.syncIndexes();
@@ -100,18 +88,13 @@ const update = async (req, res, next) => {
 };
 
 //--------- DELETE SERVICE ---------//
-//Cuando se borre servicio que se borre tambien de los tipos de servicios
 const deleteService = async (req, res, next) => {
   try {
-    const { _id } = req.service;
+    const { _id } = req.body;
     await Service.findByIdAndDelete(_id);
     if (await Service.findById(_id)) {
       return res.status(404).json('Not delete service');
     } else {
-      await ServiceType.updateMany(
-        { services: _id },
-        { $pull: { services: _id } }
-      );
       return res.status(200).json('Ok delete service');
     }
   } catch (error) {
@@ -123,6 +106,7 @@ const deleteService = async (req, res, next) => {
     );
   }
 };
+
 //--------- GET ALL SERVICE ---------//
 const getAll = async (req, res, next) => {
   try {
@@ -146,7 +130,7 @@ const getAll = async (req, res, next) => {
 const getByID = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const serviceID = await Service.findById(id).populate('type');
+    const serviceID = await Service.findById(id);
     if (serviceID) {
       return res.status(200).json(serviceID);
     } else {
@@ -162,10 +146,28 @@ const getByID = async (req, res, next) => {
   }
 };
 
+//--------- GET BY TYPE SERVICE ---------//
+const getByType = async (req, res, next) => {
+  try{
+    const {type} = req.parms;
+    const serviceByType = await Service.find({type});
+    if(serviceByType) {
+      return res.status(200).json({serviceByType});
+    } else {
+      return res.status(404).json("Service type don't found");
+    }
+  }catch{
+    return next(
+      setError(500 || error.code, error.message || 'General error get services by type')
+    );
+  }
+}
+
 module.exports = {
   create,
   update,
   deleteService,
   getAll,
   getByID,
+  getByType,
 };

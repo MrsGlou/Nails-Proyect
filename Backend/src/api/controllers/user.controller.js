@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 const bcrypt = require('bcrypt');
 
 const User = require('../models/user.model');
+const Appointment = require('../models/appointment.model');
 const setError = require('../../helpers/handle-error');
 const { deleteImgCloudinary } = require('../../middlewares/files.middleware');
 const { generateToken } = require('../../utils/getToken');
@@ -346,6 +347,7 @@ const update = async (req, res, next) => {
     patchUser.confirmationCode = req.user.confirmationCode;
     patchUser.check = req.user.check;
     patchUser.email = req.user.email;
+    patchUser.appontments= req.user.appointments;
 
     //Buscamos el id y actualizamos.
     try {
@@ -406,6 +408,10 @@ const deleteUser = async (req, res, next) => {
       return res.status(404).json('Dont delete user');
     } else {
       deleteImgCloudinary(req.user.image);
+      await Appointemt.updateMany(
+        { services: _id },
+        { $pull: { services: _id } }
+      );
       return res.status(200).json('Ok delete user');
     }
   } catch (error) {

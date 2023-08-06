@@ -2,7 +2,7 @@ const dotenv = require('dotenv');
 const ServiceType = require('../models/serviceTypes.model');
 const setError = require('../../helpers/handle-error');
 dotenv.config();
-
+//SE BORRA
 //--------- CREATE ---------//
 const create = async (req, res, next) => {
   try {

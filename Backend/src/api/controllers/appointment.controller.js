@@ -120,7 +120,7 @@ const update = async (req, res, next) => {
   }
 };
 //--------- VERIFY APPOINTMENT ---------//
-const verify = async (req, res, next) => {
+const verifyOutside = async (req, res, next) => {
   try {
     const { id } = req.body.id;
     const email = process.env.EMAIL;
@@ -181,6 +181,26 @@ const verify = async (req, res, next) => {
 const sendVerify = async (req, res, next) => {};
 
 //--------- CLOSED APPOINTMENT ---------//
+const closedAppointmet = async (req, res, next) => {
+  try{
+    const {_id} = req.params;
+    const appointmentExists = await Appointment.findById(_id);
+    if(!appointmentExists) {
+      return res.status(404).json("This appointmentn dont exists");
+    } else {
+      appointmentExists.state = "closed";
+      return res.stuatus(200).json("Status change to closed")
+    }
+
+  }catch (error) {
+    return next(
+      setError(
+        500 || error.code,
+        error.message || 'General error closed appointment'
+      )
+    );
+  }
+}
 
 //--------- DELETE APPOINTMENT ---------//
 const deleteAppointment = async (req, res, next) => {
@@ -203,25 +223,6 @@ const deleteAppointment = async (req, res, next) => {
       setError(
         500 || error.code,
         error.message || 'General error delete appointment'
-      )
-    );
-  }
-};
-
-//--------- GET ALL APPOINTMENT ---------//
-const getAll = async (req, res, next) => {
-  try {
-    const appointmentAll = await Appointment.find();
-    if (appointmentAll) {
-      return res.status(200).json(appointmentAll);
-    } else {
-      return res.status(404).json('Faliled GetAll controller to appointment');
-    }
-  } catch (error) {
-    return next(
-      setError(
-        500 || error.code,
-        error.message || 'General error get all appointment'
       )
     );
   }
@@ -290,12 +291,31 @@ const getDisponibilityAppointment = async (req, res, next) => {
   }
 };
 
+//--------- GET ALL APPOINTMENT ---------//
+const getAll = async (req, res, next) => {
+  try {
+    const appointmentAll = await Appointment.find().populate("user");
+    if (appointmentAll) {
+      return res.status(200).json(appointmentAll);
+    } else {
+      return res.status(404).json('Faliled Get All controller to appointment');
+    }
+  } catch (error) {
+    return next(
+      setError(
+        500 || error.code,
+        error.message || 'General error Get All appointment'
+      )
+    );
+  }
+};
+
 //--------- GET BY EMAIL APPOINTMENT ---------//
 const getByEmail = async (req, res, next) => {
   try {
     const { email } = req.body;
     const appointmentByEmail = await Appointment.find({ email }).populate(
-      'calendar'
+      'user'
     );
     if (appointmentByEmail) {
       return res.status(200).json({ appointmentByEmail });
@@ -318,17 +338,17 @@ const getByEmail = async (req, res, next) => {
 const getByID = async (req, res, next) => {
   try {
     const { id } = req.params;
-    const appointmentID = await Appointment.findById(id).populate('calendar');
+    const appointmentID = await Appointment.findById(id).populate('user');
     if (appointmentID) {
       return res.status(200).json(appointmentID);
     } else {
-      return res.status(404).json('Error controller getByIDAppointment');
+      return res.status(404).json('Error controller Get By ID Appointment');
     }
   } catch (error) {
     return next(
       setError(
         500 || error.code,
-        error.message || 'General error get by ID appointment'
+        error.message || 'General error Get By ID Appointment'
       )
     );
   }
@@ -337,7 +357,8 @@ const getByID = async (req, res, next) => {
 module.exports = {
   create,
   update,
-  verify,
+  verifyOutside,
+  closedAppointmet,
   deleteAppointment,
   getDisponibilityAppointment,
   getAll,
