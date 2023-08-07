@@ -1,19 +1,19 @@
 const express = require('express');
 const {
-    create,
-    update,
-    verifyOutside,
-    closedAppointment,
-    getDisponibilityAppointment,
-    deleteAppointment,
-    getAll,
-    getByID,
-    getByEmail,
-  } = require('../models/appointment.model');
+  create,
+  update,
+  verifyOutside,
+  closedAppointment,
+  getDisponibilityAppointment,
+  deleteAppointment,
+  getAll,
+  getByID,
+  getByEmail,
+} = require('../models/appointment.model');
 const {
-    isAuthAdmin,
-    isAuthSuperAdmin,
-  } = require('../../middlewares/auth.middleware');
+  isAuthAdmin,
+  isAuthSuperAdmin,
+} = require('../../middlewares/auth.middleware');
 const { getById } = require('../controllers/user.controller');
 const AppointmentRoutes = express.Router();
 

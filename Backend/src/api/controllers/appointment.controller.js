@@ -182,17 +182,16 @@ const sendVerify = async (req, res, next) => {};
 
 //--------- CLOSED APPOINTMENT ---------//
 const closedAppointmet = async (req, res, next) => {
-  try{
-    const {_id} = req.params;
+  try {
+    const { _id } = req.params;
     const appointmentExists = await Appointment.findById(_id);
-    if(!appointmentExists) {
-      return res.status(404).json("This appointmentn dont exists");
+    if (!appointmentExists) {
+      return res.status(404).json('This appointmentn dont exists');
     } else {
-      appointmentExists.state = "closed";
-      return res.stuatus(200).json("Status change to closed")
+      appointmentExists.state = 'closed';
+      return res.stuatus(200).json('Status change to closed');
     }
-
-  }catch (error) {
+  } catch (error) {
     return next(
       setError(
         500 || error.code,
@@ -200,7 +199,7 @@ const closedAppointmet = async (req, res, next) => {
       )
     );
   }
-}
+};
 
 //--------- DELETE APPOINTMENT ---------//
 const deleteAppointment = async (req, res, next) => {
@@ -294,7 +293,7 @@ const getDisponibilityAppointment = async (req, res, next) => {
 //--------- GET ALL APPOINTMENT ---------//
 const getAll = async (req, res, next) => {
   try {
-    const appointmentAll = await Appointment.find().populate("user");
+    const appointmentAll = await Appointment.find().populate('user');
     if (appointmentAll) {
       return res.status(200).json(appointmentAll);
     } else {

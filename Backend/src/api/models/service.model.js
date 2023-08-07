@@ -3,7 +3,7 @@ const { Schema } = mongoose;
 
 const ServiceSchema = new Schema(
   {
-    name: { type: String, required: true, unique: true},
+    name: { type: String, required: true, unique: true },
     type: { type: mongoose.Schema.Types.ObjectId, ref: 'ServiceType' },
     //Tiempo que dura el servicio, esto se suma en la fecha y sacamos la fecha fin, para ver la duración de la cita.
     time: { type: Number, required: true },

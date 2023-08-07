@@ -148,20 +148,23 @@ const getByID = async (req, res, next) => {
 
 //--------- GET BY TYPE SERVICE ---------//
 const getByType = async (req, res, next) => {
-  try{
-    const {type} = req.parms;
-    const serviceByType = await Service.find({type});
-    if(serviceByType) {
-      return res.status(200).json({serviceByType});
+  try {
+    const { type } = req.parms;
+    const serviceByType = await Service.find({ type });
+    if (serviceByType) {
+      return res.status(200).json({ serviceByType });
     } else {
       return res.status(404).json("Service type don't found");
     }
-  }catch{
+  } catch {
     return next(
-      setError(500 || error.code, error.message || 'General error get services by type')
+      setError(
+        500 || error.code,
+        error.message || 'General error get services by type'
+      )
     );
   }
-}
+};
 
 module.exports = {
   create,

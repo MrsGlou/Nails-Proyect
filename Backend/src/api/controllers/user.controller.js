@@ -347,7 +347,7 @@ const update = async (req, res, next) => {
     patchUser.confirmationCode = req.user.confirmationCode;
     patchUser.check = req.user.check;
     patchUser.email = req.user.email;
-    patchUser.appontments= req.user.appointments;
+    patchUser.appontments = req.user.appointments;
 
     //Buscamos el id y actualizamos.
     try {
