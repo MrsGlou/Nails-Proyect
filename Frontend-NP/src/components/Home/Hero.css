@@ -1,0 +1,44 @@
+.hero_container {
+  object-fit: cover;
+  background-image: url("../../../public/nails2-1-1.jpg");
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+  vertical-align: middle;
+  height: 700px;
+  width: 100%;
+  min-width: 629px;
+  display: flex;
+  padding: 100px 150px;
+  justify-content: end;
+  align-items: first baseline;
+  flex-direction: column;
+}
+
+.hero_container h3 {
+  padding: 10px;
+  margin: 0 5px;
+  background-color: #ffff;
+  color: black;
+  font-size: 30px;
+  font-weight: 700;
+  width: 270px;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  text-align: left;
+}
+
+.hero_container h1 {
+  padding: 20px;
+  background: rgba(13, 6, 6, 0.72);
+  color: #ffff;
+  font-size: 48px;
+  font-weight: 500;
+  text-transform: uppercase;
+  width: 700px;
+  height: 180px;
+  display: flex;
+  align-items: end;
+  text-align: left;
+}

@@ -1,0 +1,42 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 5px 100px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+}
+
+.nav img {
+  height: 70px;
+}
+
+.btn_nav {
+  padding: 10px 20px;
+  text-decoration: none;
+  background-color: var(--fourth-color);
+  color: var(--primary-color);
+}
+
+.btn_nav:hover {
+  transition: transform 0.3s ease;
+  background-color: var(--third-color);
+}
+
+.btn_nav .services :hover {
+  display: flex;
+  align-self: end;
+  transform: translateY(1128px);
+}
+
+.btn_nav .aboutUs:hover {
+  transform: translateY(2256px);
+}
+
+.btn_nav .team:hover {
+  transform: translateY(60px);
+}

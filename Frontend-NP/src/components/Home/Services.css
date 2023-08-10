@@ -1,0 +1,12 @@
+.services_container {
+  object-fit: cover;
+  vertical-align: middle;
+  height: 1128px;
+  width: 100%;
+  min-width: 629px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 40px 100px;
+}
