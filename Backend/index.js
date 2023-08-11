@@ -41,11 +41,11 @@ app.use(express.urlencoded({ limit: '15mb', extended: false }));
 //--------RUTAS----------
 const UserRoutes = require('./src/api/routes/user.routes');
 const ServiceRoutes = require('./src/api/routes/services.routes');
-const ServiceTypeRoutes = require('./src/api/routes/servicesTypes.routes');
+const AppointmentRoutes = require('./src/api/routes/appointment.routes');
 
 app.use('/api/v1/user', UserRoutes);
 app.use('/api/v1/service', ServiceRoutes);
-app.use('/api/v1/servicetype', ServiceTypeRoutes);
+app.use('/api/v1/appointment', AppointmentRoutes);
 app.use(`*`, (req, res, next) => {
   const error = new Error(`Route not found`);
   error.status = 404;

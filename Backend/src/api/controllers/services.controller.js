@@ -1,14 +1,13 @@
 const dotenv = require('dotenv');
 const Service = require('../models/service.model');
 const setError = require('../../helpers/handle-error');
-const ServiceType = require('../models/serviceTypes.model');
 dotenv.config();
 
 //--------- CREATE SERVICE ---------//
 const create = async (req, res, next) => {
   try {
     await Service.syncIndexes();
-    //Buscamos si el tipo de servicio existe
+    //Buscamos si elservicio existe
     const serviceExists = await Service.findOne({
       name: req.body.name,
     });
@@ -27,9 +26,6 @@ const create = async (req, res, next) => {
       if (postNewService) {
         return res.status(200).json({
           service: postNewService,
-          updateServiceType: await serviceType
-            .findOne({ name: req.body.ServiceType })
-            .populate('Service'),
         });
       }
     } catch (error) {
@@ -156,7 +152,7 @@ const getByType = async (req, res, next) => {
     } else {
       return res.status(404).json("Service type don't found");
     }
-  } catch {
+  } catch (error) {
     return next(
       setError(
         500 || error.code,

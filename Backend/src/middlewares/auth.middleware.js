@@ -30,7 +30,7 @@ const isAuthAdmin = async (req, res, next) => {
     const decoded = verifyToken(token, process.env.JWT_SECRET);
     req.user = await User.findById(decoded.id);
     //Si no eres admin no puedes hacer esto
-    if (req.user.rol !== 'admin') {
+    if (req.user.rol !== ('superAdmin' || 'admin')) {
       return next(new Error('Unauthorized, not admin'));
     }
     next();
@@ -50,7 +50,7 @@ const isAuthSuperAdmin = async (req, res, next) => {
     req.user = await User.findById(decoded.id);
     //Si no eres admin no puedes hacer esto
     if (req.user.rol !== 'superAdmin') {
-      return next(new Error('Unauthorized, not admin'));
+      return next(new Error('Unauthorized, not SuperAdmin'));
     }
     next();
   } catch (error) {

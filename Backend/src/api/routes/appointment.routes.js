@@ -9,7 +9,7 @@ const {
   getAll,
   getByID,
   getByEmail,
-} = require('../models/appointment.model');
+} = require('../controllers/appointment.controller');
 const {
   isAuthAdmin,
   isAuthSuperAdmin,
@@ -18,11 +18,14 @@ const { getById } = require('../controllers/user.controller');
 const AppointmentRoutes = express.Router();
 
 AppointmentRoutes.post('/create', create);
-AppointmentRoutes.patch('/update/update', update);
 AppointmentRoutes.post('/verify', verifyOutside);
 AppointmentRoutes.post('/closed', closedAppointment);
 AppointmentRoutes.post('/disponibility', getDisponibilityAppointment);
-AppointmentRoutes.post('/delete', deleteAppoitnment);
+AppointmentRoutes.post('/delete', deleteAppointment);
 AppointmentRoutes.get('/', getAll);
 AppointmentRoutes.get('/:id', getByID);
-AppointmentRoutes.post('/getEmail', getByEmail);
+AppointmentRoutes.get('/getEmail', getByEmail);
+
+AppointmentRoutes.patch('/update/update', update);
+
+module.exports = AppointmentRoutes;

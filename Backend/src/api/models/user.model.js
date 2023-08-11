@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
-const bcrypt = require('bcrypt');
+//const bcrypt = require('bcrypt');
 const { Schema } = mongoose;
 
 const UserSchema = new Schema(
@@ -35,15 +35,6 @@ const UserSchema = new Schema(
     timestamps: true,
   }
 );
-
-//Presave guardando contraseña
-UserSchema.pre('save', async function (next) {
-  try {
-    this.password = await bcrypt.hash(this.password, 10);
-  } catch (error) {
-    next('Error hashing password', error);
-  }
-});
 
 const User = mongoose.model('User', UserSchema);
 module.exports = User;

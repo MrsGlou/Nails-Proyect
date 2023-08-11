@@ -1,0 +1,94 @@
+@media (min-width: 1200px) {
+  .u-block-4fb8-1 {
+    background-image: url("../../../public/nails2-1-1.jpg");
+    background-position: 50% 50%;
+  }
+  .u-block-4fb8-2 {
+    min-height: 680px;
+  }
+  .u-block-4fb8-3 {
+    width: 187px;
+    min-height: 65px;
+    margin-top: 353px;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: 0;
+  }
+  .u-block-4fb8-4 {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .u-block-4fb8-5 {
+    font-weight: 700;
+    text-transform: none;
+    letter-spacing: normal;
+    font-size: 1.875rem;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+  .u-block-4fb8-6 {
+    width: 607px;
+    min-height: 93px;
+    margin-top: 0;
+    margin-right: auto;
+    margin-bottom: 0;
+    margin-left: 0;
+  }
+  .u-block-4fb8-7 {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+  .u-block-4fb8-8 {
+    text-transform: uppercase;
+    font-size: 3rem;
+    letter-spacing: normal;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .u-block-4fb8-9 {
+    width: 387px;
+    min-height: 49px;
+    margin-top: -4px;
+    margin-right: auto;
+    margin-bottom: 60px;
+    margin-left: 0;
+  }
+  .u-block-4fb8-10 {
+    padding-top: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+    padding-left: 0;
+  }
+  .u-block-4fb8-11 {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-shadow: 0 2px 19px
+      rgba(
+        var(--palette-4-base-r),
+        var(--palette-4-base-g),
+        var(--palette-4-base-b),
+        1
+      );
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .u-block-4fb8-12 {
+    border-style: solid;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}

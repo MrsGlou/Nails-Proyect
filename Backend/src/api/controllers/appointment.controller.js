@@ -119,6 +119,7 @@ const update = async (req, res, next) => {
     );
   }
 };
+
 //--------- VERIFY APPOINTMENT ---------//
 const verifyOutside = async (req, res, next) => {
   try {
@@ -181,7 +182,7 @@ const verifyOutside = async (req, res, next) => {
 const sendVerify = async (req, res, next) => {};
 
 //--------- CLOSED APPOINTMENT ---------//
-const closedAppointmet = async (req, res, next) => {
+const closedAppointment = async (req, res, next) => {
   try {
     const { _id } = req.params;
     const appointmentExists = await Appointment.findById(_id);
@@ -232,27 +233,42 @@ const deleteAppointment = async (req, res, next) => {
 const getDisponibilityAppointment = async (req, res, next) => {
   try {
     //Traaemos los servicios que el cliente solicita y miramos el timepo total
-    const { day } = req.body.day;
-    const { servicesIds } = req.body._id;
+    const date = req.body.selectedDate;
+    const servicesIds = req.body.selectedServices;
 
-    //nos traemos los servicios de la bbdd y calculamos el tiempo total
-    const services = await Service.findByIds(servicesIds);
-    const totalTime = services.reduce((acc, service) => acc + service.time, 0);
+    const dayNumberToDayString = (dayIndex) => {
+      return [
+        'Sunday',
+        'Monday',
+        'Tuesday',
+        'Wednesday',
+        'Thursday',
+        'Friday',
+        'Saturday',
+      ][dayIndex];
+    };
 
-    //Las citas deben durar al menos 30 minutos
-    if (totalTime < 30) {
-      return res
-        .status(400)
-        .send('The appointment must be at least 30 minutes long.');
-    }
+    //Nos quedamos solo con el dia para ver el dia de la semana que es
+    const newDate = new Date(date);
+    const day = dayNumberToDayString(newDate.getDay());
+    console.log(day);
+    //Nos traemos los servicios de la bbdd y calculamos el tiempo total
+    const services = await Service.find({
+      _id: { $in: servicesIds },
+    });
+    let totalTime = 0;
+
+    services.forEach((service) => {
+      totalTime += service.time;
+    });
 
     // Revisamos que la cita esta dentro del horario laboral
     const isWithinHoursOfOperation =
-      day === 'Monday' ||
-      day === 'Tuesday' ||
-      day === 'Wednesday' ||
-      day === 'Thursday' ||
-      (day === 'Friday' &&
+      ((day === 'Monday' ||
+        day === 'Tuesday' ||
+        day === 'Wednesday' ||
+        day === 'Thursday' ||
+        day === 'Friday') &&
         10 <= new Date().getHours() &&
         new Date().getHours() <= 20) ||
       (day === 'Saturday' &&
@@ -264,10 +280,11 @@ const getDisponibilityAppointment = async (req, res, next) => {
         .send("The appointment is not within the center's hours of operation.");
     }
 
-    //Revisamos las citas de los empleados
+    //Revisamos las citas de los empleados de ese día y los huecos libres los sacas en al respuesta
     const appointments = [];
+    console.log([User]);
     for (const user of User) {
-      for (const appointment of user.appointments) {
+      for (const appointment of User.appointments) {
         if (appointment.day === day && appointment.time === totalTime) {
           appointments.push(appointment);
         }
@@ -357,7 +374,7 @@ module.exports = {
   create,
   update,
   verifyOutside,
-  closedAppointmet,
+  closedAppointment,
   deleteAppointment,
   getDisponibilityAppointment,
   getAll,

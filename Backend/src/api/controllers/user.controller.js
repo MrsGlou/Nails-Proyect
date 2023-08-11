@@ -31,7 +31,7 @@ const register = async (req, res, next) => {
     );
     let passwordSecure = randomPassword();
     const newPassword = bcrypt.hashSync(passwordSecure, 10);
-
+    console.log(passwordSecure);
     //Guardamos el usuario con el codigo de confirmación nuevo y la contraseña.
     const newUser = new User({
       ...req.body,
@@ -408,7 +408,7 @@ const deleteUser = async (req, res, next) => {
       return res.status(404).json('Dont delete user');
     } else {
       deleteImgCloudinary(req.user.image);
-      await Appointemt.updateMany(
+      await Appointment.updateMany(
         { services: _id },
         { $pull: { services: _id } }
       );
