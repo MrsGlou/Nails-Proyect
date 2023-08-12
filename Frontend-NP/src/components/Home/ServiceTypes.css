@@ -1,91 +1,1036 @@
+.container_service_type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.container_layout_products {
+  display: flex;
+  flex-direction: row;
+}
+
 @media (min-width: 1200px) {
-  .u-block-4fb8-1 {
-    background-image: url("../../../public/nails2-1-1.jpg");
+  .container_service_type {
+    background-image: linear-gradient(
+        0deg,
+        rgba(255, 255, 255, 0.65),
+        rgba(255, 255, 255, 0.65)
+      ),
+      url("../../../public/ersg-min.jpg");
     background-position: 50% 50%;
+    min-height: 686px;
   }
-  .u-block-4fb8-2 {
-    min-height: 680px;
-  }
-  .u-block-4fb8-3 {
-    width: 187px;
-    min-height: 65px;
-    margin-top: 353px;
+
+  .service_type_tittle {
+    font-size: 3.75rem;
+    font-weight: 700;
+    margin-top: 60px;
+    margin-left: auto;
     margin-right: auto;
     margin-bottom: 0;
-    margin-left: 0;
+    line-height: 66px;
   }
-  .u-block-4fb8-4 {
-    padding-top: 10px;
-    padding-bottom: 10px;
+  .u-block-ee62-6 {
+    width: 114px;
+    height: 3px;
+    transform-origin: right center;
+    margin-top: 27px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-7 {
+    width: 740px;
+    font-weight: 700;
+    margin-top: 27px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-27 {
+    grid-template-rows: auto;
+    margin-top: 47px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-55 {
+    grid-template-columns:
+      calc(25% - 7.5px) calc(25% - 7.5px) calc(25% - 7.5px)
+      calc(25% - 7.5px);
+    grid-gap: 10px 10px;
+    min-height: 268px;
+  }
+  .u-block-ee62-28 {
+    background-image: none;
+  }
+  .u-block-ee62-29 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .u-block-ee62-47 {
+    width: 120px;
+    height: 120px;
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/woman-showing-her-beautiful-nails_23-2148697087.jpg?rand=39be");
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-31 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-48 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    margin-top: 20px;
+    font-weight: 400;
+  }
+  .u-block-ee62-32 {
+    background-image: none;
+  }
+  .u-block-ee62-33 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .u-block-ee62-49 {
+    width: 120px;
+    height: 120px;
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/woman-doing-manicure-client-close-up_23-2148697076.jpg?rand=8b6b");
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-35 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-50 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    margin-top: 20px;
+    font-weight: 400;
+  }
+  .u-block-ee62-36 {
+    background-image: none;
+  }
+  .u-block-ee62-37 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .u-block-ee62-51 {
+    width: 120px;
+    height: 120px;
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/skincare-beauty-female-feet-with-camomile-s-flower_186202-728.jpg?rand=668b");
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-39 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-52 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    margin-top: 20px;
+    font-weight: 400;
+  }
+  .u-block-ee62-40 {
+    background-image: none;
+  }
+  .u-block-ee62-41 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .u-block-ee62-53 {
+    width: 120px;
+    height: 120px;
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/beautiful-female-hands-with-french-manicure-preparing-getting-spa-procedure_186202-4227.jpg?rand=6b0a");
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-43 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-54 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    font-weight: 400;
+    margin-top: 20px;
+  }
+
+  .u-block-ee62-46 {
+    border-style: solid;
+    font-style: italic;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 1199px) and (min-width: 992px) {
+  .container_service_type {
+    background-image: linear-gradient(
+        0deg,
+        rgba(var(--white-r), var(--white-g), var(--white-b), 0.65),
+        rgba(var(--white-r), var(--white-g), var(--white-b), 0.65)
+      ),
+      url("../../../public/ersg-min.jpg");
+    background-position: 50% 50%;
+    min-height: 519px;
+  }
+
+  .service_type_tittle {
+    line-height: 66px;
+    font-weight: 700;
+    font-family: "Playfair Display", serif;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    font-size: 3.75rem;
+  }
+  .u-block-ee62-6 {
+    width: 114px;
+    height: 3px;
+    transform-origin: right center;
+    margin-top: 27px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-7 {
+    width: 740px;
+    margin-top: 27px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    font-weight: 700;
+  }
+  .u-block-ee62-27 {
+    grid-template-rows: auto;
+    margin-top: 47px;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-55 {
+    grid-template-columns:
+      calc(25% - 7.5px) calc(25% - 7.5px) calc(25% - 7.5px)
+      calc(25% - 7.5px);
+    grid-gap: 10px 10px;
+    min-height: 268px;
+  }
+  .u-block-ee62-28 {
+    background-image: none;
+  }
+  .u-block-ee62-29 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .u-block-ee62-47 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/woman-showing-her-beautiful-nails_23-2148697087.jpg?rand=39be");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-31 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-48 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    margin-top: 20px;
+    font-weight: 400;
+  }
+  .u-block-ee62-32 {
+    background-image: none;
+  }
+  .u-block-ee62-33 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .u-block-ee62-49 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/woman-doing-manicure-client-close-up_23-2148697076.jpg?rand=8b6b");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-35 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-50 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    margin-top: 20px;
+    font-weight: 400;
+  }
+  .u-block-ee62-36 {
+    background-image: none;
+  }
+  .u-block-ee62-37 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .u-block-ee62-51 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/skincare-beauty-female-feet-with-camomile-s-flower_186202-728.jpg?rand=668b");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-39 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-52 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    margin-top: 20px;
+    font-weight: 400;
+  }
+  .u-block-ee62-40 {
+    background-image: none;
+  }
+  .u-block-ee62-41 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .u-block-ee62-53 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/beautiful-female-hands-with-french-manicure-preparing-getting-spa-procedure_186202-4227.jpg?rand=6b0a");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-43 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-54 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    font-weight: 400;
+    margin-top: 20px;
+  }
+
+  .u-block-ee62-46 {
+    border-style: solid;
+    font-style: italic;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .container_service_type {
+    background-image: linear-gradient(
+        0deg,
+        rgba(var(--white-r), var(--white-g), var(--white-b), 0.65),
+        rgba(var(--white-r), var(--white-g), var(--white-b), 0.65)
+      ),
+      url("../../../public/ersg-min.jpg");
+    background-position: 50% 50%;
+    min-height: 995px;
+  }
+
+  .service_type_tittle {
+    line-height: 66px;
+    font-weight: 700;
+    font-family: "Playfair Display", serif;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    font-size: 3.75rem;
+  }
+  .u-block-ee62-6 {
+    width: 114px;
+    height: 3px;
+    transform-origin: right center;
+    margin-top: 27px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-7 {
+    width: 720px;
+    margin-top: 27px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    font-weight: 700;
+  }
+  .u-block-ee62-27 {
+    grid-template-rows: auto;
+    margin-top: 47px;
+    margin-bottom: 0;
+    height: auto;
+  }
+  .u-block-ee62-55 {
+    grid-template-columns: calc(50% - 5px) calc(50% - 5px);
+    grid-gap: 10px 10px;
+    min-height: 268px;
+  }
+  .u-block-ee62-28 {
+    background-image: none;
+  }
+  .u-block-ee62-29 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .u-block-ee62-47 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/woman-showing-her-beautiful-nails_23-2148697087.jpg?rand=39be");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-31 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-48 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    margin-top: 20px;
+    font-weight: 400;
+  }
+  .u-block-ee62-32 {
+    background-image: none;
+  }
+  .u-block-ee62-33 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .u-block-ee62-49 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/woman-doing-manicure-client-close-up_23-2148697076.jpg?rand=8b6b");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-35 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-50 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    margin-top: 20px;
+    font-weight: 400;
+  }
+  .u-block-ee62-36 {
+    background-image: none;
+  }
+  .u-block-ee62-37 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .u-block-ee62-51 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/skincare-beauty-female-feet-with-camomile-s-flower_186202-728.jpg?rand=668b");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-39 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-52 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    margin-top: 20px;
+    font-weight: 400;
+  }
+  .u-block-ee62-40 {
+    background-image: none;
+  }
+  .u-block-ee62-41 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 30px;
+    padding-right: 30px;
+  }
+  .u-block-ee62-53 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/beautiful-female-hands-with-french-manicure-preparing-getting-spa-procedure_186202-4227.jpg?rand=6b0a");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-43 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-54 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    font-weight: 400;
+    margin-top: 20px;
+  }
+
+  .u-block-ee62-46 {
+    border-style: solid;
+    font-style: italic;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 767px) and (min-width: 576px) {
+  .container_service_type {
+    background-image: linear-gradient(
+        0deg,
+        rgba(var(--white-r), var(--white-g), var(--white-b), 0.65),
+        rgba(var(--white-r), var(--white-g), var(--white-b), 0.65)
+      ),
+      url("../../../public/ersg-min.jpg");
+    background-position: 50% 50%;
+    min-height: 975px;
+  }
+
+  .service_type_tittle {
+    line-height: 1;
+    font-weight: 700;
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-6 {
+    width: 114px;
+    height: 3px;
+    transform-origin: right center;
+    margin-top: 27px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-7 {
+    width: 540px;
+    margin-top: 27px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    font-weight: 700;
+  }
+  .u-block-ee62-27 {
+    grid-template-rows: auto;
+    margin-top: 47px;
+    margin-bottom: 0;
+    height: auto;
+  }
+  .u-block-ee62-55 {
+    grid-template-columns: calc(50% - 5px) calc(50% - 5px);
+    grid-gap: 10px 10px;
+    min-height: 268px;
+  }
+  .u-block-ee62-28 {
+    background-image: none;
+  }
+  .u-block-ee62-29 {
+    padding-top: 30px;
+    padding-bottom: 30px;
     padding-left: 10px;
     padding-right: 10px;
   }
-  .u-block-4fb8-5 {
+  .u-block-ee62-47 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/woman-showing-her-beautiful-nails_23-2148697087.jpg?rand=39be");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-31 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
     font-weight: 700;
-    text-transform: none;
-    letter-spacing: normal;
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .u-block-ee62-48 {
     font-size: 1.875rem;
-    margin-top: 0;
-    margin-bottom: 0;
-    margin-left: 4px;
-    margin-right: 4px;
-  }
-  .u-block-4fb8-6 {
-    width: 607px;
-    min-height: 93px;
-    margin-top: 0;
-    margin-right: auto;
-    margin-bottom: 0;
-    margin-left: 0;
-  }
-  .u-block-4fb8-7 {
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 20px;
-    padding-right: 20px;
-  }
-  .u-block-4fb8-8 {
-    text-transform: uppercase;
-    font-size: 3rem;
-    letter-spacing: normal;
+    line-height: 1;
+    margin-top: 20px;
     font-weight: 400;
-    margin-top: 0;
-    margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
   }
-  .u-block-4fb8-9 {
-    width: 387px;
-    min-height: 49px;
-    margin-top: -4px;
-    margin-right: auto;
-    margin-bottom: 60px;
-    margin-left: 0;
+  .u-block-ee62-32 {
+    background-image: none;
   }
-  .u-block-4fb8-10 {
-    padding-top: 10px;
+  .u-block-ee62-33 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 10px;
     padding-right: 10px;
-    padding-bottom: 10px;
-    padding-left: 0;
   }
-  .u-block-4fb8-11 {
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    font-weight: 400;
-    text-shadow: 0 2px 19px
-      rgba(
-        var(--palette-4-base-r),
-        var(--palette-4-base-g),
-        var(--palette-4-base-b),
-        1
-      );
+  .u-block-ee62-49 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/woman-doing-manicure-client-close-up_23-2148697076.jpg?rand=8b6b");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
     margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-35 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
     margin-bottom: 0;
     margin-left: 0;
     margin-right: 0;
   }
-  .u-block-4fb8-12 {
+  .u-block-ee62-50 {
+    font-size: 1.875rem;
+    line-height: 1;
+    margin-top: 20px;
+    font-weight: 400;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .u-block-ee62-36 {
+    background-image: none;
+  }
+  .u-block-ee62-37 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .u-block-ee62-51 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/skincare-beauty-female-feet-with-camomile-s-flower_186202-728.jpg?rand=668b");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-39 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .u-block-ee62-52 {
+    font-size: 1.875rem;
+    line-height: 1;
+    margin-top: 20px;
+    font-weight: 400;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .u-block-ee62-40 {
+    background-image: none;
+  }
+  .u-block-ee62-41 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .u-block-ee62-53 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/beautiful-female-hands-with-french-manicure-preparing-getting-spa-procedure_186202-4227.jpg?rand=6b0a");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-43 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 0;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .u-block-ee62-54 {
+    font-size: 1.875rem;
+    line-height: 1;
+    font-weight: 400;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .u-block-ee62-46 {
     border-style: solid;
+    font-style: italic;
+    padding-top: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 575px) {
+  .container_service_type {
+    background-image: linear-gradient(
+        0deg,
+        rgba(var(--white-r), var(--white-g), var(--white-b), 0.65),
+        rgba(var(--white-r), var(--white-g), var(--white-b), 0.65)
+      ),
+      url("../../../public/ersg-min.jpg");
+    background-position: 50% 50%;
+    min-height: 975px;
+  }
+
+  .service_type_tittle {
+    line-height: 1;
+    font-weight: 700;
+    font-family: "Playfair Display", serif;
+    font-size: 3rem;
+    margin-top: 60px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-6 {
+    width: 114px;
+    height: 3px;
+    transform-origin: right center;
+    margin-top: 27px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-7 {
+    width: 340px;
+    margin-top: 27px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 0;
+    font-weight: 700;
+  }
+  .u-block-ee62-27 {
+    grid-template-rows: auto;
+    margin-top: 47px;
+    margin-bottom: 0;
+    height: auto;
+  }
+  .u-block-ee62-55 {
+    grid-template-columns: 100%;
+    grid-gap: 10px 10px;
+    min-height: 268px;
+  }
+  .u-block-ee62-28 {
+    background-image: none;
+  }
+  .u-block-ee62-29 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .u-block-ee62-47 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/woman-showing-her-beautiful-nails_23-2148697087.jpg?rand=39be");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-31 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-48 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    margin-top: 20px;
+    font-weight: 400;
+  }
+  .u-block-ee62-32 {
+    background-image: none;
+  }
+  .u-block-ee62-33 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .u-block-ee62-49 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/woman-doing-manicure-client-close-up_23-2148697076.jpg?rand=8b6b");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-35 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-50 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    margin-top: 20px;
+    font-weight: 400;
+  }
+  .u-block-ee62-36 {
+    background-image: none;
+  }
+  .u-block-ee62-37 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .u-block-ee62-51 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/skincare-beauty-female-feet-with-camomile-s-flower_186202-728.jpg?rand=668b");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-39 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-52 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    margin-top: 20px;
+    font-weight: 400;
+  }
+  .u-block-ee62-40 {
+    background-image: none;
+  }
+  .u-block-ee62-41 {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+  .u-block-ee62-53 {
+    background-image: url("np://user.desktop.nicepage.com/Site_217987708/images/beautiful-female-hands-with-french-manicure-preparing-getting-spa-procedure_186202-4227.jpg?rand=6b0a");
+    width: 120px;
+    height: 120px;
+    background-position: 50% 50%;
+    margin-top: 0;
+    margin-bottom: 0;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .u-block-ee62-43 {
+    text-transform: uppercase;
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-left: 0;
+    margin-right: 0;
+    margin-bottom: 0;
+  }
+  .u-block-ee62-54 {
+    margin-left: 0;
+    margin-right: 0;
+    font-size: 1.875rem;
+    line-height: 1;
+    font-weight: 400;
+    margin-top: 20px;
+  }
+
+  .u-block-ee62-46 {
+    border-style: solid;
+    font-style: italic;
     padding-top: 0;
     padding-bottom: 0;
     padding-left: 0;

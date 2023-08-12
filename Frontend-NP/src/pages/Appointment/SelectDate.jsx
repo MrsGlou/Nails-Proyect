@@ -27,6 +27,7 @@ const SelectDate = () => {
 
   return (
     <div>
+      <h2 className="appointment_tittle">Selecciona día</h2>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateCalendar
           showDaysOutsideCurrentMonth
@@ -34,6 +35,7 @@ const SelectDate = () => {
           onChange={handleChange}
         />
       </LocalizationProvider>
+      <h2 className="appointment_tittle">Selecciona la hora de la cita</h2>
       <Datepicker
         controls={["timegrid"]}
         display="inline"
