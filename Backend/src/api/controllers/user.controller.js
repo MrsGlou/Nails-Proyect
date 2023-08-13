@@ -31,7 +31,6 @@ const register = async (req, res, next) => {
     );
     let passwordSecure = randomPassword();
     const newPassword = bcrypt.hashSync(passwordSecure, 10);
-    console.log(passwordSecure);
     //Guardamos el usuario con el codigo de confirmación nuevo y la contraseña.
     const newUser = new User({
       ...req.body,
@@ -212,7 +211,7 @@ const forgotPassword = async (req, res, next) => {
         `http://localhost:8083/api/v1/user/forgotpassword/sendpassword/${userDB._id}`
       );
     } else {
-      return res.status(404).json('User not register');
+      return res.status(404).json('User not found');
     }
   } catch (error) {
     return next(
@@ -255,7 +254,7 @@ const sendPassword = async (req, res, next) => {
       if (error) {
         //Mandamos la respuesta con el error
         console.log(error);
-        return res.status(404).json('Dont sent email and dont update user');
+        return res.status(404).json('Dont send email and dont update user');
       } else {
         //Encriptamos contrasesña y la guardamos
         const newPassword = bcrypt.hashSync(passwordSecure, 10);
