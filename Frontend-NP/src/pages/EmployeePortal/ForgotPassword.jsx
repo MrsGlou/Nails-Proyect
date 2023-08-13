@@ -16,13 +16,13 @@ const ForgotPassword = () => {
     setSend(false);
   };
 
-  //! 2) ----------------USEEFFECT QUE GESTIONA LA RES CON SUS ERRORES Y SUS 200
+  // Gestionamos errores
   useEffect(() => {
     console.log(res);
     useForgotPassword(res, setRes, setForgotOk);
   }, [res]);
 
-  //Reenviamos al login cuando le hemos enviado la cotnraseña
+  //Reenviamos al login
   if (forgotOk) {
     console.log("envio de la contraseña correcto");
     return <Navigate to="/login" />;
@@ -32,6 +32,10 @@ const ForgotPassword = () => {
     <>
       <div className="form-wrap">
         <h1>Change your password 💱</h1>
+        
+        <p className="bottom-text">
+            <small>Enter your email to send you the new password 💌</small>
+          </p>
 
         <form onSubmit={handleSubmit(formSubmit)}>
           <div className="user_container form-group">
@@ -59,9 +63,6 @@ const ForgotPassword = () => {
             </button>
           </div>
 
-          <p className="bottom-text">
-            <small>Enter your email to send you the new password 💌</small>
-          </p>
         </form>
       </div>
     </>

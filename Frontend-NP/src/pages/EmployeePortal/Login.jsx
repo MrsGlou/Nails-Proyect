@@ -12,7 +12,7 @@ const Login = () => {
   const [loginOk, setLoginOk] = useState(false);
   const { userLogin, setUser } = useAuth();
 
-  //! 2) ------------------ LOS USEEFFECT QUE GESTIONAN LA RESPUESTA: ERRORES Y 200
+  //Gestionamos errores
 
   useEffect(() => {
     setUser(() => null);
@@ -31,7 +31,7 @@ const Login = () => {
 
   if (loginOk) {
     if (res.data.user.check == false) {
-      return <Navigate to="/platform/verifyCode" />;
+      return <Navigate to="/platform/validated" />;
     } else {
       return <Navigate to="/platform/dashboard" />;
     }
