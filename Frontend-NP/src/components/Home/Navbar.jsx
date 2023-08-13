@@ -24,6 +24,9 @@ const Navbar = () => {
       <NavLink to="/">
         <button className="btn_nav team">NUESTRO EQUIPO</button>
       </NavLink>
+      <NavLink to="/platform/login">
+        <button className="btn_nav bookAppoitnment">AREA EMPLEADO</button>
+      </NavLink>
       <NavLink to="/serviceselect">
         <button className="btn_nav bookAppoitnment">PEDIR CITA</button>
       </NavLink>

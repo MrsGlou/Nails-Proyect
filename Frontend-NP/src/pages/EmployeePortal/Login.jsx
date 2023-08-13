@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { loginUser } from "../../services/API_user/user.service";
 import { Link, Navigate } from "react-router-dom";
 import { useLoginError } from "../../hooks/useLoginError";
+import { useAuth } from "../../contexts/authContext";
 
 const Login = () => {
   const { handleSubmit, register } = useForm();
@@ -30,9 +31,9 @@ const Login = () => {
 
   if (loginOk) {
     if (res.data.user.check == false) {
-      return <Navigate to="/verifyCode" />;
+      return <Navigate to="/platform/verifyCode" />;
     } else {
-      return <Navigate to="/dashboard" />;
+      return <Navigate to="/platform/dashboard" />;
     }
   }
   return (

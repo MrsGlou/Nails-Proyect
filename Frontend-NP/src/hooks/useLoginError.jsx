@@ -26,7 +26,7 @@ export const useLoginError = (res, setLoginOk, userLogin, setRes) => {
 
   //Respuesta 404: Usuario o contraseña mal
 
-  if (res?.response?.data?.includes("password dont match")) {
+  if (res?.response?.data?.includes("Invalid password")) {
     setRes(() => {});
     Swal.fire({
       icon: "error",
@@ -38,7 +38,7 @@ export const useLoginError = (res, setLoginOk, userLogin, setRes) => {
   }
 
   //! ------------------- 404: 'User no register'
-  if (res?.response?.data?.includes("User no register")) {
+  if (res?.response?.data?.includes("User not found")) {
     Swal.fire({
       icon: "error",
       title: "Oops...",
