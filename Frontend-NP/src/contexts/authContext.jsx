@@ -43,7 +43,7 @@ export const AuthContextProvider = ({ children }) => {
   const logout = () => {
     localStorage.removeItem("user");
     setUser(null);
-    navigate("/login");
+    navigate("/platform/login");
   };
 
   const bridgeData = () => {

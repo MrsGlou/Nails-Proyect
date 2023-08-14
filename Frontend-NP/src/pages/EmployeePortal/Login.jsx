@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../../services/API_user/user.service";
 import { Link, Navigate } from "react-router-dom";
@@ -19,7 +19,6 @@ const Login = () => {
   }, []);
 
   useEffect(() => {
-    console.log(res);
     useLoginError(res, setLoginOk, userLogin, setRes);
   }, [res]);
 
@@ -30,7 +29,7 @@ const Login = () => {
   };
 
   if (loginOk) {
-    if (res.data.user.check == false) {
+    if (res.data.user.validated == false) {
       return <Navigate to="/platform/validated" />;
     } else {
       return <Navigate to="/platform/dashboard" />;
@@ -83,7 +82,7 @@ const Login = () => {
           <p className="bottom-text">
             <small>
               Have you forgotten the password?
-              <Link to="/forgotpassword" className="anchorCustom">
+              <Link to="/platform/forgotpassword" className="anchorCustom">
                 Change password
               </Link>
             </small>

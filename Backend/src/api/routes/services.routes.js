@@ -28,4 +28,6 @@ ServiceRoutes.patch(
   update
 );
 
+ServiceRoutes.delete('/', [isAuthSuperAdmin], [isAuthAdmin], deleteService);
+
 module.exports = ServiceRoutes;

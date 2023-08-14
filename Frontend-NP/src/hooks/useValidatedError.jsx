@@ -1,15 +1,14 @@
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 
 export const useValidatedCodeError = (
-    res,
-    setDeleteUser,
-    setOkValidated,
-    setUser, 
-    setReloadPageError, 
-    setRes
+  res,
+  setDeleteUser,
+  setValidatedOk,
+  setUser,
+  setReloadPageError,
+  setRes
 ) => {
-
-    //200 : todo ok ---> testValidatedOk: true
+  //200 : todo ok ---> testValidatedOk: true
   if (res?.data?.testCheckOk?.toString() == "true") {
     // comprobamos que vengas del login con el localStorage
     if (localStorage.getItem("user")) {
@@ -24,7 +23,7 @@ export const useValidatedCodeError = (
       setUser(() => customUser);
       localStorage.setItem("user", customUserString);
     }
-    setOkCheck(() => true);
+    setValidatedOk(() => true);
     Swal.fire({
       icon: "success",
       title: "Ok correct code ✅",
@@ -69,7 +68,7 @@ export const useValidatedCodeError = (
     setRes(() => {});
   }
 
-  //404: 'User not found' --> Ha recargado y no tenemos la cuenta 
+  //404: 'User not found' --> Ha recargado y no tenemos la cuenta
   // Usuario se lleva por la via del login
 
   if (res?.response?.data?.includes("User not found")) {
@@ -84,7 +83,7 @@ export const useValidatedCodeError = (
 
     setRes(() => {});
   }
-  //404: random error.message, de la parte de la actualizacion del user
+  //404: error en acutializaciçon del user
   if (res?.response?.status == 404) {
     Swal.fire({
       icon: "error",
@@ -106,4 +105,4 @@ export const useValidatedCodeError = (
     });
     setRes(() => {});
   }
-}
+};

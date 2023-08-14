@@ -10,6 +10,9 @@ import Login from "./pages/EmployeePortal/Login.jsx";
 import { AuthContextProvider } from "./contexts/authContext.jsx";
 import ForgotPassword from "./pages/EmployeePortal/ForgotPassword.jsx";
 import { Dashboard } from "./pages/EmployeePortal/Dashboard.jsx";
+import Validated from "./pages/EmployeePortal/Validated.jsx";
+import Services from "./pages/EmployeePortal/Services.jsx";
+import Users from "./pages/EmployeePortal/Users.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -23,13 +26,15 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               path="/verifyappointment/:id"
               element={<VerifyAppointment />}
             />
-
+            <Route path="/platform/" element={<Dashboard />} />
             <Route path="/platform/login" element={<Login />} />
-            <Route path="/platform/dashboard" element={<Dashboard />} />
             <Route
               path="/platform/forgotpassword"
               element={<ForgotPassword />}
             />
+            <Route path="/platform/validated" element={<Validated />} />
+            <Route path="/platform/services" element={<Services />} />
+            <Route path="/platform/users" element={<Users />} />
           </Route>
         </Routes>
       </AuthContextProvider>

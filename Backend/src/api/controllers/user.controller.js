@@ -205,7 +205,9 @@ const login = async (req, res, next) => {
 const forgotPassword = async (req, res, next) => {
   try {
     const { email } = req.body;
+    console.log(req.body);
     const userDB = await User.findOne({ email });
+    console.log(userDB);
     if (userDB) {
       return res.redirect(
         `http://localhost:8083/api/v1/user/forgotpassword/sendpassword/${userDB._id}`
@@ -246,7 +248,7 @@ const sendPassword = async (req, res, next) => {
       from: email,
       to: userDB.email,
       subject: 'New Password',
-      text: `User: ${userDB.name}. Your new code login is ${passwordSecure} We have sent this because we have a password change request. If it wasn't you, please contact us. Thank you.`,
+      text: `User: ${userDB.name}. Your new password is ${passwordSecure} We have sent this because we have a password change request. If it wasn't you, please contact us. Thank you.`,
     };
 
     //Mandamos el correo

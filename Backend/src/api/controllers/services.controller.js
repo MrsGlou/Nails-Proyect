@@ -86,6 +86,7 @@ const update = async (req, res, next) => {
 //--------- DELETE SERVICE ---------//
 const deleteService = async (req, res, next) => {
   try {
+    console.log(req.body);
     const { _id } = req.body;
     await Service.findByIdAndDelete(_id);
     if (await Service.findById(_id)) {

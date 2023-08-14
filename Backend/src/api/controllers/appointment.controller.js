@@ -251,7 +251,7 @@ const getDisponibilityAppointment = async (req, res, next) => {
     //Nos quedamos solo con el dia para ver el dia de la semana que es
     const newDate = new Date(date);
     const day = dayNumberToDayString(newDate.getDay());
-    console.log(day);
+
     //Nos traemos los servicios de la bbdd y calculamos el tiempo total
     const services = await Service.find({
       _id: { $in: servicesIds },

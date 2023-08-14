@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useForgotPassword } from "../../hooks/useForgotPassword";
 import { Navigate } from "react-router-dom";
@@ -11,6 +11,7 @@ const ForgotPassword = () => {
   const { handleSubmit, register } = useForm();
 
   const formSubmit = async (formData) => {
+    console.log(formData);
     setSend(true);
     setRes(await forgotPasswordUser(formData));
     setSend(false);
@@ -18,7 +19,6 @@ const ForgotPassword = () => {
 
   // Gestionamos errores
   useEffect(() => {
-    console.log(res);
     useForgotPassword(res, setRes, setForgotOk);
   }, [res]);
 
@@ -32,11 +32,9 @@ const ForgotPassword = () => {
     <>
       <div className="form-wrap">
         <h1>Change your password 💱</h1>
-        
         <p className="bottom-text">
-            <small>Enter your email to send you the new password 💌</small>
-          </p>
-
+          <small>Enter your email to send you the new password 💌</small>
+        </p>
         <form onSubmit={handleSubmit(formSubmit)}>
           <div className="user_container form-group">
             <input
@@ -62,7 +60,6 @@ const ForgotPassword = () => {
               Change password
             </button>
           </div>
-
         </form>
       </div>
     </>
