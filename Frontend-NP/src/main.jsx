@@ -13,6 +13,7 @@ import { Dashboard } from "./pages/EmployeePortal/Dashboard.jsx";
 import Validated from "./pages/EmployeePortal/Validated.jsx";
 import Services from "./pages/EmployeePortal/Services.jsx";
 import Users from "./pages/EmployeePortal/Users.jsx";
+import Profile from "./pages/EmployeePortal/Profile.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -35,6 +36,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
             <Route path="/platform/validated" element={<Validated />} />
             <Route path="/platform/services" element={<Services />} />
             <Route path="/platform/users" element={<Users />} />
+            <Route path="/platform/myprofile" element={<Profile />} />
           </Route>
         </Routes>
       </AuthContextProvider>

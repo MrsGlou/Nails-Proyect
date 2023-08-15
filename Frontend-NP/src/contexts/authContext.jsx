@@ -15,7 +15,7 @@ export const AuthContextProvider = ({ children }) => {
     }
   });
 
-  //! ALLUSER -----solo cuando me registro para guardar la respuesta--
+  //ALLUSER -----solo cuando me registro para guardar la respuesta--
 
   const [allUser, setAllUser] = useState({
     data: {

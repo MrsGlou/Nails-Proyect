@@ -10,8 +10,14 @@ const {
   changePassword,
   update,
   getAll,
+  deleteUser,
+  getById,
 } = require('../controllers/user.controller');
-const { isAuth, isAuthAdmin } = require('../../middlewares/auth.middleware');
+const {
+  isAuth,
+  isAuthAdmin,
+  isAuthSuperAdmin,
+} = require('../../middlewares/auth.middleware');
 
 const UserRoutes = express.Router();
 
@@ -29,6 +35,8 @@ UserRoutes.patch(
 );
 
 UserRoutes.get('/', getAll);
+UserRoutes.get('/:id', getById);
 UserRoutes.get('/forgotpassword/sendpassword/:id', sendPassword);
+UserRoutes.delete('/:id', [isAuthSuperAdmin], [isAuthAdmin], deleteUser);
 
 module.exports = UserRoutes;

@@ -403,15 +403,17 @@ const update = async (req, res, next) => {
 //--------- DELETE USER ---------//
 const deleteUser = async (req, res, next) => {
   try {
-    const { _id } = req.user;
-    await User.findByIdAndDelete(_id);
-    if (await User.findById(_id)) {
+    console.log(req.params);
+    const { id } = req.params;
+    console.log({ id });
+    const deleteUser = await User.findByIdAndDelete(id);
+    console.log(deleteUser);
+    if (await User.findById(id)) {
       return res.status(404).json('Dont delete user');
     } else {
-      deleteImgCloudinary(req.user.image);
       await Appointment.updateMany(
-        { services: _id },
-        { $pull: { services: _id } }
+        { services: id },
+        { $pull: { services: id } }
       );
       return res.status(200).json('Ok delete user');
     }

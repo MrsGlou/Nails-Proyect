@@ -32,7 +32,7 @@ const Login = () => {
     if (res.data.user.validated == false) {
       return <Navigate to="/platform/validated" />;
     } else {
-      return <Navigate to="/platform/dashboard" />;
+      return <Navigate to="/platform" />;
     }
   }
   return (

@@ -36,9 +36,21 @@ export const resendValidatedUser = async (formData) => {
     .catch((error) => error);
 };
 
+//--------- CHANGE PASSWORD ----------
+export const changePasswordUser = async (formData) => {
+  return APIuser.patch("/user/changepassword", formData, {
+    headers: {
+      Authorization: `Bearer ${updateToken()}`,
+    },
+  })
+    .then((res) => res)
+    .catch((error) => error);
+};
+
 //------------DELETE USER --------------
-export const deleteUser = async () => {
-  return APIuser.delete("/user/", {
+export const deleteUser = async (formData) => {
+  const _id = formData._id;
+  return APIuser.delete(`/user/${_id}`, {
     headers: {
       Authorization: `Bearer ${updateToken()}`,
     },
@@ -49,9 +61,8 @@ export const deleteUser = async () => {
 
 //------------UPDATE USER --------------
 export const updateUser = async (formData) => {
-  return APIuser.delete("/user/update/update", formData, {
+  return APIuser.patch("/user/update/update", formData, {
     headers: {
-      "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${updateToken()}`,
     },
   })
@@ -62,6 +73,13 @@ export const updateUser = async (formData) => {
 //------------GET USERS --------------
 export const getUsers = async () => {
   return APIuser.get("/user")
+    .then((res) => res)
+    .catch((error) => error);
+};
+
+//------------GET USERS BY ID--------------
+export const getUserByID = async (id) => {
+  return APIuser.get(`/user/${id}`)
     .then((res) => res)
     .catch((error) => error);
 };

@@ -8,8 +8,9 @@ export const useValidatedCodeError = (
   setReloadPageError,
   setRes
 ) => {
+  console.log("entro 200");
   //200 : todo ok ---> testValidatedOk: true
-  if (res?.data?.testCheckOk?.toString() == "true") {
+  if (res?.data?.testValidatedOk?.toString() == "true") {
     // comprobamos que vengas del login con el localStorage
     if (localStorage.getItem("user")) {
       const currentUser = localStorage.getItem("user");
@@ -32,7 +33,7 @@ export const useValidatedCodeError = (
     });
   }
   //200 : todo ok ---> testValidatedOk: false
-  if (res?.data?.testCheckOk?.toString() == "false") {
+  if (res?.data?.testValidatedOk?.toString() == "false") {
     Swal.fire({
       icon: "error",
       title: "Interval server error ❎.",

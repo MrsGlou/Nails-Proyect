@@ -9,7 +9,7 @@ const AppointmentSchema = new Schema(
     email: {
       type: String,
       required: true,
-      //validate: [validator.isEmail, 'Email not valid'],
+      validate: [validator.isEmail, 'Email not valid'],
     },
     phone: {
       type: String,

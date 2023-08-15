@@ -10,10 +10,8 @@ export const getServices = async () => {
 
 //------------DELETE SERVICES --------------
 export const deleteService = async (formData) => {
-  console.log(formData);
-  return APIuser.delete("/service", formData._id, {
+  return APIuser.delete("/service", formData, {
     headers: {
-      "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${updateToken()}`,
     },
   })
@@ -25,7 +23,6 @@ export const deleteService = async (formData) => {
 export const updateServices = async (formData) => {
   return APIuser.patch("/service/update/update", formData, {
     headers: {
-      "Content-Type": "multipart/form-data",
       Authorization: `Bearer ${updateToken()}`,
     },
   })

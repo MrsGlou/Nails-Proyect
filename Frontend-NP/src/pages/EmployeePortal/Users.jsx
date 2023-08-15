@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getUsers } from "../../services/API_user/user.service";
+import { useDeleteUserError } from "../../hooks/useDeleteUserError";
 
 const Users = () => {
   const [users, setUsers] = useState([]);
@@ -18,10 +19,10 @@ const Users = () => {
         <div className="user_container" key={user._id}>
           <h4>{user.name}</h4>
           <h4>{user.email}</h4>
-          <button className="update_user" onClick={() => useUpdateUser(user)}>
-            🖍
-          </button>
-          <button className="delete_user" onClick={() => useDeleteUser(user)}>
+          <button
+            className="delete_user"
+            onClick={() => useDeleteUserError(user)}
+          >
             🗑
           </button>
         </div>

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import { useAuth } from "../contexts/authContext";
-import { useResendValidatedError } from "../hooks/useResendValidatedError";
-import { resendValidatedUser } from "../services/API_user/user.service";
+import { useAuth } from "../../contexts/authContext";
+import { useResendValidatedError } from "../../hooks/useResendValidatedError";
+import { resendValidatedUser } from "../../services/API_user/user.service";
 
 const ButtonResend = ({ setReloadPageError }) => {
   const [res, setRes] = useState({});

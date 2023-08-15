@@ -4,7 +4,7 @@ import { validatedCodeUser } from "../../services/API_user/user.service";
 import { useValidatedCodeError } from "../../hooks/useValidatedError";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../../contexts/authContext";
-import ButtonResend from "../../components/ButtonResend";
+import ButtonResend from "../../components/EmployeePortal/ButtonResend";
 
 const Validated = () => {
   const [res, setRes] = useState({});
@@ -12,7 +12,7 @@ const Validated = () => {
   const [validatedOk, setValidatedOk] = useState(false);
   const [reloadPageError, setReloadPageError] = useState(false);
   const [deleteUser, setDeleteUser] = useState(false);
-  const { allUser, userLogin, setUser, user } = useAuth();
+  const { allUser, setUser, user } = useAuth();
   const { handleSubmit, register } = useForm();
 
   //Gestion formulario
@@ -55,11 +55,14 @@ const Validated = () => {
 
   //Estados de navegación
   if (validatedOk) {
+    console.log("entro");
     if (!localStorage.getItem("user")) {
+      console.log("entro if");
       setValidatedOk(() => false);
       //useAutoLogin(allUser, userLogin, setOkCheck);
     } else {
-      return <Navigate to="/platform/dashboard" />;
+      console.log("entro else");
+      return <Navigate to="/platform" />;
     }
   }
 
