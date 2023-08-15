@@ -282,14 +282,6 @@ const getDisponibilityAppointment = async (req, res, next) => {
 
     //Revisamos las citas de los empleados de ese día y los huecos libres los sacas en al respuesta
     const appointments = [];
-    console.log([User]);
-    for (const user of User) {
-      for (const appointment of User.appointments) {
-        if (appointment.day === day && appointment.time === totalTime) {
-          appointments.push(appointment);
-        }
-      }
-    }
 
     //Si no hay citas disponibles:
     if (appointments.length === 0) {
