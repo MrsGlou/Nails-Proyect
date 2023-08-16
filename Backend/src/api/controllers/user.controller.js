@@ -205,9 +205,7 @@ const login = async (req, res, next) => {
 const forgotPassword = async (req, res, next) => {
   try {
     const { email } = req.body;
-    console.log(req.body);
     const userDB = await User.findOne({ email });
-    console.log(userDB);
     if (userDB) {
       return res.redirect(
         `http://localhost:8083/api/v1/user/forgotpassword/sendpassword/${userDB._id}`
@@ -403,11 +401,8 @@ const update = async (req, res, next) => {
 //--------- DELETE USER ---------//
 const deleteUser = async (req, res, next) => {
   try {
-    console.log(req.params);
     const { id } = req.params;
-    console.log({ id });
-    const deleteUser = await User.findByIdAndDelete(id);
-    console.log(deleteUser);
+    await User.findByIdAndDelete(id);
     if (await User.findById(id)) {
       return res.status(404).json('Dont delete user');
     } else {

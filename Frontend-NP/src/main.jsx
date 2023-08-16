@@ -14,6 +14,12 @@ import Validated from "./pages/EmployeePortal/Validated.jsx";
 import Services from "./pages/EmployeePortal/Services.jsx";
 import Users from "./pages/EmployeePortal/Users.jsx";
 import Profile from "./pages/EmployeePortal/Profile.jsx";
+import { UpdateService } from "./components/EmployeePortal/UpdateService.jsx";
+import AddUser from "./pages/EmployeePortal/AddUser.jsx";
+import AddServices from "./pages/EmployeePortal/AddServices.jsx";
+import { ProtectedCheckChildren } from "./components/ProtectedValidated.jsx";
+import { Protected } from "./components/Protected.jsx";
+import NotFound from "./pages/NotFound.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
@@ -27,16 +33,76 @@ ReactDOM.createRoot(document.getElementById("root")).render(
               path="/verifyappointment/:id"
               element={<VerifyAppointment />}
             />
-            <Route path="/platform/" element={<Dashboard />} />
+            <Route
+              path="/platform/"
+              element={
+                <Protected>
+                  <Dashboard />
+                </Protected>
+              }
+            />
             <Route path="/platform/login" element={<Login />} />
             <Route
               path="/platform/forgotpassword"
               element={<ForgotPassword />}
             />
-            <Route path="/platform/validated" element={<Validated />} />
-            <Route path="/platform/services" element={<Services />} />
-            <Route path="/platform/users" element={<Users />} />
-            <Route path="/platform/myprofile" element={<Profile />} />
+            <Route
+              path="/platform/validated"
+              element={
+                <ProtectedCheckChildren>
+                  <Validated />
+                </ProtectedCheckChildren>
+              }
+            />
+            <Route
+              path="/platform/services"
+              element={
+                <Protected>
+                  <Services />
+                </Protected>
+              }
+            />
+            <Route
+              path="/platform/services/update/:id"
+              element={
+                <Protected>
+                  <UpdateService />
+                </Protected>
+              }
+            />
+            <Route
+              path="/platform/services/newservice"
+              element={
+                <Protected>
+                  <AddServices />
+                </Protected>
+              }
+            />
+            <Route
+              path="/platform/users"
+              element={
+                <Protected>
+                  <Users />
+                </Protected>
+              }
+            />
+            <Route
+              path="/platform/users/newuser"
+              element={
+                <Protected>
+                  <AddUser />
+                </Protected>
+              }
+            />
+            <Route
+              path="/platform/myprofile"
+              element={
+                <Protected>
+                  <Profile />
+                </Protected>
+              }
+            />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </AuthContextProvider>

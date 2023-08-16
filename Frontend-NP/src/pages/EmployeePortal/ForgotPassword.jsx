@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useForgotPassword } from "../../hooks/useForgotPassword";
+import { UseForgotPassword } from "../../hooks/UseForgotPassword";
 import { Navigate } from "react-router-dom";
 import { forgotPasswordUser } from "../../services/API_user/user.service";
 
@@ -19,7 +19,7 @@ const ForgotPassword = () => {
 
   // Gestionamos errores
   useEffect(() => {
-    useForgotPassword(res, setRes, setForgotOk);
+    UseForgotPassword(res, setRes, setForgotOk);
   }, [res]);
 
   //Reenviamos al login

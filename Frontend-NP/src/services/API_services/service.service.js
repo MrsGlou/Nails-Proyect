@@ -10,7 +10,8 @@ export const getServices = async () => {
 
 //------------DELETE SERVICES --------------
 export const deleteService = async (formData) => {
-  return APIuser.delete("/service", formData, {
+  const id = formData._id;
+  return APIuser.delete(`/service/${id}`, {
     headers: {
       Authorization: `Bearer ${updateToken()}`,
     },
@@ -19,13 +20,28 @@ export const deleteService = async (formData) => {
     .catch((error) => error);
 };
 
-//------------UPDATE SERVICES --------------
-export const updateServices = async (formData) => {
-  return APIuser.patch("/service/update/update", formData, {
+//------------CREATE SERVICE --------------
+export const createService = async (formData) => {
+  return APIuser.post("/service/create", formData, {
     headers: {
       Authorization: `Bearer ${updateToken()}`,
     },
   })
+    .then((res) => res)
+    .catch((error) => error);
+};
+//------------UPDATE SERVICES --------------
+export const updateService = async (customFormData) => {
+  console.log(customFormData);
+  return APIuser.patch(
+    `/service/update/update/${customFormData.id}`,
+    customFormData,
+    {
+      headers: {
+        Authorization: `Bearer ${updateToken()}`,
+      },
+    }
+  )
     .then((res) => res)
     .catch((error) => error);
 };

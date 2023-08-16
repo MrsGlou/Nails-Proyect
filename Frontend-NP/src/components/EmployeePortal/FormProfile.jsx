@@ -3,12 +3,11 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useAuth } from "../../contexts/authContext";
 import { updateUser } from "../../services/API_user/user.service";
-import { useUpdateUserError } from "../../hooks/useUpdateUserError";
+import { UseUpdateUserError } from "../../hooks/UseUpdateUserError";
 
 const FormProfile = () => {
   const [res, setRes] = useState({});
   const [send, setSend] = useState(false);
-  const { setUser, logout } = useAuth();
   const { register, handleSubmit } = useForm();
 
   //Formulario
@@ -33,7 +32,7 @@ const FormProfile = () => {
   };
 
   useEffect(() => {
-    useUpdateUserError(res, setRes, setUser, logout);
+    UseUpdateUserError(res, setRes);
   }, [res]);
 
   return (

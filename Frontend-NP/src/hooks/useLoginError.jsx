@@ -1,6 +1,6 @@
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 
-export const useLoginError = (res, setLoginOk, userLogin, setRes) => {
+export const UseLoginError = (res, setLoginOk, userLogin, setRes) => {
   //Respuesta 200-> todo ok
   if (res?.status == 200) {
     const dataCustom = {

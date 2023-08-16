@@ -1,7 +1,7 @@
 import { deleteUser } from "../services/API_user/user.service";
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 
-export const useDeleteUserError = (user) => {
+export const UseDeleteUserError = (user) => {
   Swal.fire({
     title: "Are you sure you want to delete your profile?",
     icon: "warning",

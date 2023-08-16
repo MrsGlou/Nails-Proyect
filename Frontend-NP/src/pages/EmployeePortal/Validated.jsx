@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { validatedCodeUser } from "../../services/API_user/user.service";
-import { useValidatedCodeError } from "../../hooks/useValidatedError";
+import { UseValidatedCodeError } from "../../hooks/UseValidatedError";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../../contexts/authContext";
 import ButtonResend from "../../components/EmployeePortal/ButtonResend";
@@ -25,7 +25,7 @@ const Validated = () => {
         confirmationCode: parseInt(formData.confirmationCode),
       };
 
-      //! llamada al servicio
+      // llamada al servicio
       setSend(true);
       setRes(await validatedCodeUser(customFormData));
       setSend(false);
@@ -43,7 +43,7 @@ const Validated = () => {
   };
 
   useEffect(() => {
-    useValidatedCodeError(
+    UseValidatedCodeError(
       res,
       setDeleteUser,
       setValidatedOk,

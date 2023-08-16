@@ -17,17 +17,16 @@ const ServiceRoutes = express.Router();
 //
 
 ServiceRoutes.post('/create', [isAuthSuperAdmin], [isAuthAdmin], create);
-ServiceRoutes.post('/delete', [isAuthSuperAdmin], [isAuthAdmin], deleteService);
 ServiceRoutes.get('/', getAll);
 ServiceRoutes.get('/:id', getByID);
 ServiceRoutes.get('/type/:type', getByType);
 ServiceRoutes.patch(
-  '/update/update',
+  '/update/update/:id',
   [isAuthSuperAdmin],
   [isAuthAdmin],
   update
 );
 
-ServiceRoutes.delete('/', [isAuthSuperAdmin], [isAuthAdmin], deleteService);
+ServiceRoutes.delete('/:id', [isAuthSuperAdmin], [isAuthAdmin], deleteService);
 
 module.exports = ServiceRoutes;

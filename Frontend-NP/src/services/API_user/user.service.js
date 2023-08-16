@@ -59,6 +59,17 @@ export const deleteUser = async (formData) => {
     .catch((error) => error);
 };
 
+//------------CREATE USER --------------
+export const createUser = async (formData) => {
+  return APIuser.post("/user/register", formData, {
+    headers: {
+      Authorization: `Bearer ${updateToken()}`,
+    },
+  })
+    .then((res) => res)
+    .catch((error) => error);
+};
+
 //------------UPDATE USER --------------
 export const updateUser = async (formData) => {
   return APIuser.patch("/user/update/update", formData, {

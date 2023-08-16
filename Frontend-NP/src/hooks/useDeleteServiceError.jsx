@@ -1,7 +1,7 @@
 import { deleteService } from "../services/API_services/service.service";
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 
-export const useDeleteServiceError = (service) => {
+export const UseDeleteServiceError = (service) => {
   Swal.fire({
     title: "Are you sure you want to delete the service",
     icon: "warning",
@@ -20,6 +20,7 @@ export const useDeleteServiceError = (service) => {
             showConfirmButton: false,
             timer: 1500,
           });
+
           break;
 
         default:

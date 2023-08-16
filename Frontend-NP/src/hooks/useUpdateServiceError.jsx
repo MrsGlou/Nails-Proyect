@@ -1,6 +1,6 @@
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 
-export const useUpdateServiceError = (res, setRes) => {
+export const UseUpdateServiceError = (res, setOkUpdate, setRes) => {
   //200: testUpdate: todo a true
   let contador;
   if (res?.data) {
@@ -23,6 +23,7 @@ export const useUpdateServiceError = (res, setRes) => {
         }
       }
     });
+    setOkUpdate(() => true);
     Swal.fire({
       icon: "success",
       title: `Update data service✅`,

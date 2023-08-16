@@ -1,6 +1,6 @@
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 
-export const useUpdateUserError = (res, setRes) => {
+export const UseUpdateUserError = (res, setRes) => {
   //200: testUpdate: todo a true
   let contador;
   if (res?.data) {

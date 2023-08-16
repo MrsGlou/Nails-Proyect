@@ -49,10 +49,14 @@ const update = async (req, res, next) => {
     const { id } = req.params;
     const patchService = new Service(req.body);
 
-    try {
-      await Service.findByIdAndUpdate(id, patchService);
-      const updateService = await Service.findById(id);
+    patchService._id = req.body.id;
+    patchService.type = req.body.type;
 
+    try {
+      console.log(req.body.id);
+      await Service.findByIdAndUpdate(req.body.id, patchService);
+      const updateService = await Service.findById(req.body.id);
+      console.log(updateService);
       if (!updateService) {
         return res.status(404).json('Service not found');
       }
@@ -86,10 +90,9 @@ const update = async (req, res, next) => {
 //--------- DELETE SERVICE ---------//
 const deleteService = async (req, res, next) => {
   try {
-    console.log(req.body);
-    const { _id } = req.body;
-    await Service.findByIdAndDelete(_id);
-    if (await Service.findById(_id)) {
+    const { id } = req.params;
+    await Service.findByIdAndDelete(id);
+    if (await Service.findById(id)) {
       return res.status(404).json('Not delete service');
     } else {
       return res.status(200).json('Ok delete service');

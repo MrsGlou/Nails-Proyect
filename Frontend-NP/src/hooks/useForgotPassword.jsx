@@ -1,6 +1,6 @@
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 
-export const useForgotPassword = (res, setRes, setForgotOk) => {
+export const UseForgotPassword = (res, setRes, setForgotOk) => {
   //! -------- 200 ={ updateUser: true, sendPassword: true}
   if (res?.status == 200) {
     if (res?.data?.sendPassword == true && res?.data?.updateUser == true) {

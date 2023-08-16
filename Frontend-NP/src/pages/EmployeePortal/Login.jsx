@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { loginUser } from "../../services/API_user/user.service";
 import { Link, Navigate } from "react-router-dom";
-import { useLoginError } from "../../hooks/useLoginError";
+import { UseLoginError } from "../../hooks/UseLoginError";
 import { useAuth } from "../../contexts/authContext";
 
 const Login = () => {
@@ -19,7 +19,7 @@ const Login = () => {
   }, []);
 
   useEffect(() => {
-    useLoginError(res, setLoginOk, userLogin, setRes);
+    UseLoginError(res, setLoginOk, userLogin, setRes);
   }, [res]);
 
   const formSubmit = async (formData) => {
