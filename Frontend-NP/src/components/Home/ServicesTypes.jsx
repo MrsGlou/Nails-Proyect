@@ -5,8 +5,10 @@ const ServicesTypes = () => {
     <section className="container_service_type">
       <h2 className="service_type_tittle">Servicios de Moon manicure</h2>
       <p className="u-text u-text-palette-4-base u-block-ee62-7">
-        Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
-        molestie consequat, vel illum dolore eu feugiat nulla facilisis at vero
+        Desde manicuras meticulosas hasta pedicuras relajantes, cada sesión es
+        un tributo a la labor incansable de tus extremidades. El resultado va
+        más allá de unas uñas pulcras; es una celebración de ti, de tu esfuerzo
+        constante y tu merecido descanso.
       </p>
       <div className="container_layout_products u-block-ee62-27">
         <div className="u-repeater u-block-ee62-55">

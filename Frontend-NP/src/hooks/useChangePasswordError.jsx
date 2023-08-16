@@ -1,6 +1,6 @@
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 
-export const useChangePasswordError = (res, setRes) => {
+export const UseChangePasswordError = (res, setRes) => {
   //200: updateUser:true
   if (res?.data?.updateUser?.toString() == "true") {
     Swal.fire({

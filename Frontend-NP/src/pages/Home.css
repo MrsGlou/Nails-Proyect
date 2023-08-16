@@ -1,0 +1,7 @@
+.main_layout_home {
+  display: flex;
+  flex-direction: column;
+  min-height: 150px;
+  align-items: center;
+  justify-content: center;
+}

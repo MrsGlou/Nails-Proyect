@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 import { useAuth } from "../../contexts/authContext";
 import { useEffect, useState } from "react";
-import { useChangePasswordError } from "../../hooks/useChangePasswordError";
+import { UseChangePasswordError } from "../../hooks/UseChangePasswordError";
 import { changePasswordUser } from "../../services/API_user/user.service";
 
 const ChangePassword = () => {
@@ -41,8 +41,7 @@ const ChangePassword = () => {
   //! ------------------2) GESTION DE LA RESPUESTA POR EL CUSTOMHOOK Y AYUDADO POR EL USEEFFECT
 
   useEffect(() => {
-    console.log(res);
-    useChangePasswordError(res, setRes, setUser);
+    UseChangePasswordError(res, setRes, setUser);
   }, [res]);
 
   return (
