@@ -1,80 +1,64 @@
+import BtnAppointment from "../BtnAppointment";
 import "./ServiceTypes.css";
 
 const ServicesTypes = () => {
   return (
-    <section className="container_service_type">
+    <div className="service_type_container">
       <h2 className="service_type_tittle">Servicios de Moon manicure</h2>
-      <p className="u-text u-text-palette-4-base u-block-ee62-7">
+      <p className="service_type_text">
         Desde manicuras meticulosas hasta pedicuras relajantes, cada sesión es
         un tributo a la labor incansable de tus extremidades. El resultado va
         más allá de unas uñas pulcras; es una celebración de ti, de tu esfuerzo
         constante y tu merecido descanso.
       </p>
-      <div className="container_layout_products u-block-ee62-27">
-        <div className="u-repeater u-block-ee62-55">
-          <div className=" u-block-ee62-28">
-            <div className="container_product u-block-ee62-29">
-              <div
-                alt=""
-                className="u-image u-image-circle u-block-ee62-47"
-              ></div>
-              <h3 className="u-custom-font u-text u-text-font u-text-palette-4-base u-block-ee62-31">
-                Acrilic set
-              </h3>
-
-              <p className="u-text u-text-palette-5-dark-1 u-block-ee62-48">
-                $25
-              </p>
-            </div>
+      <div className="service_type_products_container">
+        <figure className="service_type_products_figure">
+          <img
+            className="service_type_img"
+            src="../../../public/woman-showing-her-beautiful-nails_23-2148697087.jpg"
+            alt="womman showing her nails"
+          />
+          <div className="service_type_container_text">
+            {" "}
+            <h3 className="service_type_name">Manicura Deluxe</h3>
+            <p className="service_type_price">20,99 €</p>
           </div>
-          <div className="u-align-center u-container-style u-list-item u-repeater-item u-white u-block-ee62-32">
-            <div className="u-container-layout u-similar-container u-valign-middle u-block-ee62-33">
-              <div
-                alt=""
-                className="u-image u-image-circle u-block-ee62-49"
-              ></div>
-              <h3 className="u-custom-font u-text u-text-font u-text-palette-4-base u-block-ee62-35">
-                Shellac
-              </h3>
+        </figure>
+        <figure className="service_type_products_figure">
+          <img
+            className="service_type_img"
+            src="../../../public/beautiful-female-hands-with-french-manicure-preparing-getting-spa-procedure_186202-4227.jpg"
+            alt="womman showing her nails"
+          />
+          <h3 className="service_type_name">Uñas de Gel o Acrilicas</h3>
 
-              <p className="u-text u-text-palette-5-dark-1 u-block-ee62-50">
-                $30
-              </p>
-            </div>
-          </div>
-          <div className="u-align-center u-container-style u-list-item u-repeater-item u-white u-block-ee62-36">
-            <div className="u-container-layout u-similar-container u-valign-middle u-block-ee62-37">
-              <div
-                alt=""
-                className="u-image u-image-circle u-block-ee62-51"
-              ></div>
-              <h3 className="u-custom-font u-text u-text-font u-text-palette-4-base u-block-ee62-39">
-                Skincare
-              </h3>
+          <p className="service_type_price">30,99 €</p>
+        </figure>
+        <figure className="service_type_products_figure">
+          <img
+            className="service_type_img"
+            src="../../../public/skincare-beauty-female-feet-with-camomile-s-flower_186202-728.jpg"
+            alt="womman showing her nails"
+          />
+          <h3 className="service_type_name">Pedicura Completa</h3>
 
-              <p className="u-text u-text-palette-5-dark-1 u-block-ee62-52">
-                $20
-              </p>
-            </div>
-          </div>
-          <div className="u-align-center u-container-style u-list-item u-repeater-item u-white u-block-ee62-40">
-            <div className="u-container-layout u-similar-container u-valign-middle u-block-ee62-41">
-              <div
-                alt=""
-                className="u-image u-image-circle u-block-ee62-53"
-              ></div>
-              <h3 className="u-custom-font u-text u-text-font u-text-palette-4-base u-block-ee62-43">
-                french
-              </h3>
+          <p className="service_type_price">28,99 €</p>
+        </figure>
+        <figure className="service_type_products_figure">
+          <img
+            className="service_type_img"
+            src="../../../public/966ec785f9c6f38bb63e96428c492f58.jpg"
+            alt="womman showing her nails"
+          />
+          <h3 className="service_type_name">Lifting</h3>
 
-              <p className="u-text u-text-palette-5-dark-1 u-block-ee62-54">
-                $35
-              </p>
-            </div>
-          </div>
-        </div>
+          <p className="service_type_price">30,99 €</p>
+        </figure>
       </div>
-    </section>
+      <div className="btn_appointment_link">
+        <BtnAppointment />
+      </div>
+    </div>
   );
 };
 

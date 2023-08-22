@@ -25,22 +25,6 @@
   gap: 50px;
 }
 
-.service_container_img {
-  position: relative;
-}
-
-.service_circle {
-  position: absolute;
-  width: 100px;
-  height: 100px;
-  background-color: var(--third-color);
-  border-radius: 50%;
-  z-index: -1;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
-
 .service_general_img {
   max-width: 100%;
 }
@@ -48,15 +32,14 @@
 .service_text {
   font-size: 35px;
   top: 50%;
-  left: -50px; /* Ajusta este valor para controlar la posición horizontal del texto */
+  left: -50px;
   transform: translateX(-30%);
-  z-index: 1;
   background-color: var(--fifth-color);
   color: var(--primary-color);
   margin-top: 25px;
   max-width: 600px;
-  padding: 30px;
-  text-align: start;
+  padding: 25px 50px;
+  text-align: flex-end;
 }
 
 .service_text_second {

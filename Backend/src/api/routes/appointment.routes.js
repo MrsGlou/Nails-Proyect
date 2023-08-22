@@ -4,7 +4,7 @@ const {
   update,
   verifyOutside,
   closedAppointment,
-  getDisponibilityAppointment,
+  getAviableAppointment,
   deleteAppointment,
   getAll,
   getByID,
@@ -20,7 +20,7 @@ const AppointmentRoutes = express.Router();
 AppointmentRoutes.post('/create', create);
 AppointmentRoutes.post('/verify', verifyOutside);
 AppointmentRoutes.post('/closed', closedAppointment);
-AppointmentRoutes.post('/disponibility', getDisponibilityAppointment);
+AppointmentRoutes.post('/aviable', getAviableAppointment);
 AppointmentRoutes.post('/delete', deleteAppointment);
 AppointmentRoutes.get('/', getAll);
 AppointmentRoutes.get('/:id', getByID);

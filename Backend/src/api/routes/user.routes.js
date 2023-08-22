@@ -38,5 +38,4 @@ UserRoutes.get('/', getAll);
 UserRoutes.get('/:id', getById);
 UserRoutes.get('/forgotpassword/sendpassword/:id', sendPassword);
 UserRoutes.delete('/:id', [isAuthSuperAdmin], [isAuthAdmin], deleteUser);
-
 module.exports = UserRoutes;

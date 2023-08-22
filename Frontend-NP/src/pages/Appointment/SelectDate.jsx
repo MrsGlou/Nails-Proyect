@@ -1,9 +1,8 @@
-import { DateCalendar, DatePicker } from "@mui/x-date-pickers";
+import { DateCalendar } from "@mui/x-date-pickers";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { useEffect } from "react";
-import "@mobiscroll/react/dist/css/mobiscroll.min.css";
-import { Datepicker, setOptions, localeEs } from "@mobiscroll/react";
+
 import "./SelectDate.css";
 
 const SelectDate = () => {
@@ -19,12 +18,6 @@ const SelectDate = () => {
     localStorage.removeItem("selectedDate");
   }, []);
 
-  setOptions({
-    locale: localeEs,
-    theme: "ios",
-    themeVariant: "light",
-  });
-
   return (
     <div>
       <h2 className="appointment_tittle">Selecciona día</h2>
@@ -36,11 +29,6 @@ const SelectDate = () => {
         />
       </LocalizationProvider>
       <h2 className="appointment_tittle">Selecciona la hora de la cita</h2>
-      <Datepicker
-        controls={["timegrid"]}
-        display="inline"
-        background-color="none"
-      />
     </div>
   );
 };

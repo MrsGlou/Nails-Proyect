@@ -21,46 +21,61 @@ const create = async (req, res, next) => {
       },
     });
 
-    const userId = req.body.userId;
+    const userId = req.body.user;
+
     const user = await User.findById(userId);
     if (!user) {
       res.status(404).send('El empleado no existe.');
     }
 
-    const servicesIds = req.body.services;
+    const servicesIds = req.body.service;
     const services = await Service.findById(servicesIds);
-    if (services.length !== services.length) {
+    if (!services) {
       res.status(400).send('Algunos de los servicios no existen.');
       return;
     }
     const newAppointment = new Appointment({
       ...req.body,
-      user: req.body.userId,
-      services: req.body.servicesIds,
+      user: req.body.user,
+      service: req.body.service,
     });
 
     try {
+      console.log(newAppointment);
       const createAppointment = await newAppointment.save();
 
-      //-----------Enviamos correo con la nueva cita ----------//
-      const mailOptions = {
-        from: email,
-        to: req.body.email,
-        subject: 'Tu cita ha sido registrada con exito',
-        text: `Hola ${req.body.name}, hemos registrado tu cita para el día ${req.body.appointmentStart}`,
-      };
+      if (createAppointment) {
+        const user = await User.findById(req.body.user);
+        let updateUser;
 
-      transporter.sendMail(mailOptions, (error, info) => {
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
+        try {
+          user.appontments.push(newAppointment._id);
+          updateUser = await User.findByIdAndUpdate(req.body.user, user);
+        } catch (error) {
+          return next(error);
         }
-      });
-      return res.status(200).json({
-        appointment: createAppointment,
-        user: await User.findById(userId).populate('appointment'),
-      });
+
+        //-----------Enviamos correo con la nueva cita ----------//
+        const mailOptions = {
+          from: email,
+          to: req.body.email,
+          subject: 'Tu cita ha sido registrada con exito',
+          text: `Hola ${req.body.name}, hemos registrado tu cita para el día ${req.body.appointmentStart}`,
+        };
+
+        transporter.sendMail(mailOptions, (error, info) => {
+          if (error) {
+            console.log(error);
+          } else {
+            console.log('Email sent: ' + info.response);
+          }
+        });
+
+        return res.status(200).json({
+          appointment: createAppointment,
+          updateUser: await User.findById(userId).populate('appointment'),
+        });
+      }
     } catch (error) {
       return res.status(404).json(error.message);
     }
@@ -179,8 +194,6 @@ const verifyOutside = async (req, res, next) => {
   }
 };
 
-const sendVerify = async (req, res, next) => {};
-
 //--------- CLOSED APPOINTMENT ---------//
 const closedAppointment = async (req, res, next) => {
   try {
@@ -230,7 +243,7 @@ const deleteAppointment = async (req, res, next) => {
 
 //--------- GET DISPONIBILITY APPOINTMENT ---------//
 //5. Calcula las citas disponibles en función de la duración de la cita(GET DISPONIBILITY -> Appointment)
-const getDisponibilityAppointment = async (req, res, next) => {
+const getAviableAppointment = async (req, res, next) => {
   try {
     //Traaemos los servicios que el cliente solicita y miramos el timepo total
     const date = req.body.selectedDate;
@@ -262,33 +275,47 @@ const getDisponibilityAppointment = async (req, res, next) => {
       totalTime += service.time;
     });
 
-    // Revisamos que la cita esta dentro del horario laboral
-    const isWithinHoursOfOperation =
-      ((day === 'Monday' ||
-        day === 'Tuesday' ||
-        day === 'Wednesday' ||
-        day === 'Thursday' ||
-        day === 'Friday') &&
-        10 <= new Date().getHours() &&
-        new Date().getHours() <= 20) ||
-      (day === 'Saturday' &&
-        10 <= new Date().getHours() &&
-        new Date().getHours() <= 15);
-    if (!isWithinHoursOfOperation) {
-      return res
-        .status(400)
-        .send("The appointment is not within the center's hours of operation.");
+    //Nos traemos los ids de los usuarios que tienen el rol basico
+    const rol = 'basic';
+    const usersBasic = await User.find({ rol: rol });
+
+    if (!usersBasic) {
+      return next(setError(409, 'There are no basic users'));
     }
 
-    //Revisamos las citas de los empleados de ese día y los huecos libres los sacas en al respuesta
-    const appointments = [];
+    //Traemos todas las citas
+    const appointments = await Appointment.find();
 
-    //Si no hay citas disponibles:
-    if (appointments.length === 0) {
-      return res.status(400).send('No disponibillity');
-    } else {
-      return res.status(200).send(appointments, totalTime);
+    //Creamos el objeto con todas las horas disponibles por usuario
+    let times = new Map();
+    appointments?.map((appointment) => {
+      times.set('09:00', true);
+      times.set('09:30', true);
+      times.set('10:00', true);
+      times.set('10:30', true);
+      times.set('11:00', true);
+      times.set('11:30', true);
+      times.set('12:00', true);
+      times.set('12:30', true);
+      times.set('13:00', true);
+      times.set('13:30', true);
+      times.set('14:00', false);
+    });
+
+    if (day !== 'Saturday') {
+      times.set('16:00', true);
+      times.set('16:30', true);
+      times.set('17:00', true);
+      times.set('17:30', true);
+      times.set('18:00', true);
+      times.set('18:30', true);
+      times.set('19:00', true);
+      times.set('19:30', true);
+      times.set('20:00', false);
     }
+    console.log(times);
+
+    return res.status(200).json({ usersBasic, appointments, totalTime });
   } catch (error) {
     return next(
       setError(
@@ -368,7 +395,7 @@ module.exports = {
   verifyOutside,
   closedAppointment,
   deleteAppointment,
-  getDisponibilityAppointment,
+  getAviableAppointment,
   getAll,
   getByEmail,
   getByID,

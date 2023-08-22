@@ -29,7 +29,9 @@ const UserSchema = new Schema(
     validated: { type: Boolean, default: false },
     journeyStart: { type: Date },
     journeyTime: { type: Number },
-    appontments: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Appointment' }],
+    appointments: [
+      { type: mongoose.Schema.Types.ObjectId, ref: 'Appointment' },
+    ],
   },
   {
     timestamps: true,

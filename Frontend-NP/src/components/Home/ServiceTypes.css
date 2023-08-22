@@ -1,4 +1,4 @@
-.container_service_type {
+.service_type_container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -16,4 +16,68 @@
 .container_layout_products {
   display: flex;
   flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.service_type_tittle {
+  font-size: 60px;
+  margin-top: 40px;
+  color: var(--fourth-color);
+  padding: 30px;
+}
+
+.service_type_text {
+  color: var(--fourth-color);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-align: center;
+  padding: 30px 200px;
+}
+
+.service_type_products_container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  gap: 20px;
+}
+
+.service_type_products_figure {
+  height: 317px;
+  width: 227px;
+  background-color: var(--primary-color);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.service_type_img {
+  display: block;
+  border-radius: 50%;
+  height: 15vh;
+  width: 15vh;
+  object-fit: cover;
+  background-size: cover;
+}
+
+.service_type_container_text {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 10px;
+}
+
+.service_type_name {
+  margin-top: 20px;
+  align-content: end;
+}
+
+.btn_appointment_link {
+  padding-bottom: 40px;
 }

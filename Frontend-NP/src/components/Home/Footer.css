@@ -1,0 +1,25 @@
+.footer_container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  margin: 50px 0;
+  background: linear-gradient(
+    to right,
+    var(--fifth-color),
+    var(--third-color),
+    var(--fourth-color)
+  );
+  height: 70vh;
+}
+
+.footer_location {
+  height: 50vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.footer_img > img {
+  height: 60vh;
+  border-radius: 1.5%;
+}
