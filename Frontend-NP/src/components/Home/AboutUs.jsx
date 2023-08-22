@@ -1,5 +1,5 @@
 import BtnAppointment from "../BtnAppointment";
-import "./AbautUs.css";
+import "./AboutUs.css";
 
 const AboutUs = () => {
   return (

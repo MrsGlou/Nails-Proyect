@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../contexts/authContext";
+import { Button } from "@mui/material";
+import LogoutIcon from "@mui/icons-material/Logout";
+import HomeIcon from "@mui/icons-material/Home";
 
 const NavbarEmployee = () => {
   const { user, logout } = useAuth();
@@ -7,28 +10,77 @@ const NavbarEmployee = () => {
     <nav className="nav">
       <NavLink to="/platform">
         {" "}
-        <img
-          src="https://res.cloudinary.com/dq186ej4c/image/upload/v1685705455/home_circle_outline_icon_139029_xdnnt2.png"
-          alt=""
+        <HomeIcon
+          sx={{
+            color: "#dc136c",
+            ":hover": { color: "#f991cc", borderColor: "#f991cc" },
+            borderColor: "#dc136c",
+            fontSize: "40px",
+          }}
           className="iconNav home"
         />
       </NavLink>
 
       <NavLink to="/platform/services">
-        <button className="btn_nav_employee services">SERVICIOS</button>
+        <Button
+          sx={{
+            color: "#dc136c",
+            ":hover": { color: "#f991cc", borderColor: "#f991cc" },
+            borderColor: "#dc136c",
+          }}
+          variant="outlined"
+          className="btn_nav_employee services"
+        >
+          SERVICIOS
+        </Button>
       </NavLink>
       <NavLink to="/platform/users">
-        <button className="btn_nav_employee users">USUARIOS</button>
+        <Button
+          sx={{
+            color: "#dc136c",
+            ":hover": { color: "#f991cc", borderColor: "#f991cc" },
+            borderColor: "#dc136c",
+          }}
+          variant="outlined"
+          className="btn_nav_employee users"
+        >
+          USUARIOS
+        </Button>
       </NavLink>
       <NavLink to="/">
-        <button className="btn_nav_employee bookAppoitnment">NUEVA CITA</button>
+        <Button
+          sx={{
+            color: "#dc136c",
+            ":hover": { color: "#f991cc", borderColor: "#f991cc" },
+            borderColor: "#dc136c",
+          }}
+          variant="outlined"
+          className="btn_nav_employee bookAppoitnment"
+        >
+          NUEVA CITA
+        </Button>
       </NavLink>
       <NavLink to="/platform/myprofile">
-        <button className="btn_nav_employee profile">MI PERFIL</button>
+        <Button
+          sx={{
+            color: "#dc136c",
+            ":hover": { color: "#f991cc", borderColor: "#f991cc" },
+            borderColor: "#dc136c",
+          }}
+          variant="outlined"
+          className="btn_nav_employee profile"
+        >
+          MI PERFIL
+        </Button>
       </NavLink>
       {user !== null && (
-        <img
-          src="https://res.cloudinary.com/dq186ej4c/image/upload/v1685706203/9e3c325bca17c2147d249237c5a0906b_qhqifa.png"
+        <LogoutIcon
+          sx={{
+            color: "#dc136c",
+            ":hover": { color: "#f991cc", borderColor: "#f991cc" },
+            borderColor: "#dc136c",
+            fontSize: "35px",
+          }}
           alt=""
           className="iconNav iconLogout"
           onClick={() => logout()}

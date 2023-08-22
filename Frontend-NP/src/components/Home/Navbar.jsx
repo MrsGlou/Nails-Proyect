@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+import { Button } from "@mui/material";
 import "./Navbar.css";
 
 const Navbar = () => {
@@ -16,19 +17,68 @@ const Navbar = () => {
       </NavLink>
 
       <NavLink to="/">
-        <button className="btn_nav services">SERVICIOS</button>
+        <Button
+          sx={{
+            color: "#dc136c",
+            ":hover": { color: "#f991cc", borderColor: "#f991cc" },
+            borderColor: "#dc136c",
+          }}
+          variant="outlined"
+          className="btn_nav services"
+        >
+          SERVICIOS
+        </Button>
       </NavLink>
       <NavLink to="/">
-        <button className="btn_nav aboutUs">SOBRE NOSOTROS</button>
+        <Button
+          sx={{
+            color: "#dc136c",
+            ":hover": { color: "#f991cc", borderColor: "#f991cc" },
+            borderColor: "#dc136c",
+          }}
+          variant="outlined"
+          className="btn_nav aboutUs"
+        >
+          SOBRE NOSOTROS
+        </Button>
       </NavLink>
       <NavLink to="/">
-        <button className="btn_nav team">NUESTRO EQUIPO</button>
+        <Button
+          sx={{
+            color: "#dc136c",
+            ":hover": { color: "#f991cc", borderColor: "#f991cc" },
+            borderColor: "#dc136c",
+          }}
+          variant="outlined"
+          className="btn_nav team"
+        >
+          NUESTRO EQUIPO
+        </Button>
       </NavLink>
       <NavLink to="/platform/login">
-        <button className="btn_nav bookAppoitnment">AREA EMPLEADO</button>
+        <Button
+          sx={{
+            color: "#dc136c",
+            ":hover": { color: "#f991cc", borderColor: "#f991cc" },
+            borderColor: "#dc136c",
+          }}
+          variant="outlined"
+          className="btn_nav bookAppoitnment"
+        >
+          AREA EMPLEADO
+        </Button>
       </NavLink>
       <NavLink to="/serviceselect">
-        <button className="btn_nav bookAppoitnment">PEDIR CITA</button>
+        <Button
+          sx={{
+            backgroundColor: "#dc136c",
+            ":hover": { backgroundColor: "#f991cc" },
+          }}
+          variant="contained"
+          className="btn_nav bookAppoitnment"
+        >
+          PEDIR CITA
+        </Button>
       </NavLink>
     </nav>
   );

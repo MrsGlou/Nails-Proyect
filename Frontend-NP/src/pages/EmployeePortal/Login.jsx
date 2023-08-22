@@ -4,6 +4,8 @@ import { loginUser } from "../../services/API_user/user.service";
 import { Link, Navigate } from "react-router-dom";
 import { UseLoginError } from "../../hooks/UseLoginError";
 import { useAuth } from "../../contexts/authContext";
+import "./Login.css";
+import { Button, Input } from "@mui/material";
 
 const Login = () => {
   const { handleSubmit, register } = useForm();
@@ -37,57 +39,59 @@ const Login = () => {
   }
   return (
     <>
-      <div className="form-wrap">
-        <h1>Login</h1>
-        <p>Welcome Back! Login to your account 💌</p>
-        <form onSubmit={handleSubmit(formSubmit)}>
-          <div className="email_container form-group">
-            <input
-              className="input_user"
-              type="email"
-              id="email"
-              name="email"
-              autoComplete="false"
-              {...register("email", { required: true })}
-            />
-            <label htmlFor="custom-input" className="custom-placeholder">
-              email
-            </label>
-
-            <div className="password_container form-group">
-              <input
+      <div className="login_container">
+        <div className="login_form_container">
+          <h1>Login</h1>
+          <p>Welcome Back! Login to your account 💌</p>
+          <form className="login_form" onSubmit={handleSubmit(formSubmit)}>
+            <div className="email_container form-group">
+              <Input
                 className="input_user"
-                type="password"
-                id="password"
-                name="password"
+                type="email"
+                id="email"
+                name="email"
                 autoComplete="false"
-                {...register("password", { required: true })}
+                placeholder="email"
+                {...register("email", { required: true })}
               />
-              <label htmlFor="custom-input" className="custom-placeholder">
-                password
-              </label>
-            </div>
-          </div>
 
-          <div className="btn_container">
-            <button
-              className="btn"
-              type="submit"
-              disabled={send}
-              style={{ background: send ? "#49c1a388" : "#49c1a2" }}
-            >
-              {send ? "Cargando ....." : "LOGIN"}
-            </button>
-          </div>
-          <p className="bottom-text">
-            <small>
-              Have you forgotten the password?
-              <Link to="/platform/forgotpassword" className="anchorCustom">
-                Change password
-              </Link>
-            </small>
-          </p>
-        </form>
+              <div className="password_container form-group">
+                <Input
+                  className="input_user"
+                  type="password"
+                  id="password"
+                  name="password"
+                  autoComplete="false"
+                  placeholder="password"
+                  {...register("password", { required: true })}
+                />
+              </div>
+            </div>
+
+            <div className="btn_container">
+              <Button
+                sx={{
+                  backgroundColor: "#dc136c",
+                  ":hover": { backgroundColor: "#f991cc" },
+                }}
+                className="btn"
+                variant="contained"
+                type="submit"
+                disabled={send}
+              >
+                {send ? "Cargando ....." : "LOGIN"}
+              </Button>
+            </div>
+            <p className="bottom-text">
+              <small>
+                Have you forgotten the password?{" "}
+                <Link to="/platform/forgotpassword" className="anchorCustom">
+                  Change password
+                </Link>
+              </small>
+            </p>
+          </form>
+        </div>
       </div>
     </>
   );
