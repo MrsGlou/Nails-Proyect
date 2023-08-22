@@ -10,9 +10,9 @@
     ),
     url("../../../public/fondoaboutus.jpg.jpg");
   background-position: 50% 0%;
-  min-height: 500px;
-  min-width: 1700px;
-  padding: 20px 200px;
+  max-height: 500px;
+  max-width: 1700px;
+  padding: 20px;
   margin-bottom: 20px;
 }
 
@@ -25,6 +25,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   min-height: 270px;
   gap: 50px;
 }

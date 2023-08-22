@@ -49,7 +49,7 @@ const create = async (req, res, next) => {
         let updateUser;
 
         try {
-          user.appontments.push(newAppointment._id);
+          user.appointments.push(newAppointment._id);
           updateUser = await User.findByIdAndUpdate(req.body.user, user);
         } catch (error) {
           return next(error);
@@ -263,7 +263,6 @@ const getAviableAppointment = async (req, res, next) => {
 
     //Nos quedamos solo con el dia para ver el dia de la semana que es
     const newDate = new Date(date);
-    const day = dayNumberToDayString(newDate.getDay());
 
     //Nos traemos los servicios de la bbdd y calculamos el tiempo total
     const services = await Service.find({
@@ -286,36 +285,79 @@ const getAviableAppointment = async (req, res, next) => {
     //Traemos todas las citas
     const appointments = await Appointment.find();
 
-    //Creamos el objeto con todas las horas disponibles por usuario
-    let times = new Map();
-    appointments?.map((appointment) => {
-      times.set('09:00', true);
-      times.set('09:30', true);
-      times.set('10:00', true);
-      times.set('10:30', true);
-      times.set('11:00', true);
-      times.set('11:30', true);
-      times.set('12:00', true);
-      times.set('12:30', true);
-      times.set('13:00', true);
-      times.set('13:30', true);
-      times.set('14:00', false);
-    });
+    const year = newDate.getFullYear();
+    const month = newDate.getMonth();
+    const dayOfMonth = newDate.getDate();
+    const day = dayNumberToDayString(newDate.getDay());
 
-    if (day !== 'Saturday') {
-      times.set('16:00', true);
-      times.set('16:30', true);
-      times.set('17:00', true);
-      times.set('17:30', true);
-      times.set('18:00', true);
-      times.set('18:30', true);
-      times.set('19:00', true);
-      times.set('19:30', true);
-      times.set('20:00', false);
+    //Haccemos un nuevo array con los ids de los usuarios y sus citas pendientes
+    const usersAppointments = new Map();
+
+    for (let userBasic of usersBasic) {
+      let appointmentByUser = new Array();
+
+      for (let appointment of appointments) {
+        if (appointment.user.equals(userBasic._id)) {
+          appointmentByUser.push(appointment);
+        }
+      }
+
+      usersAppointments.set(userBasic._id.toString(), appointmentByUser);
     }
-    console.log(times);
 
-    return res.status(200).json({ usersBasic, appointments, totalTime });
+    //Creamos el objeto con todas las horas disponibles por usuario
+    for (let userAppointments of usersAppointments) {
+      let times = new Map();
+
+      //Miramos que el dia sea entre diario para todas las horas y los sabados solo por la mañana
+
+      if (day !== 'Saturday' && 'Sunday') {
+        times.set(new Date(year, month, dayOfMonth, 9, 0).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 9, 30).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 10, 0).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 10, 30).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 11, 0).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 11, 30).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 12, 0).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 13, 30).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 14, 0).getTime(), false);
+        times.set(new Date(year, month, dayOfMonth, 16, 0).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 16, 30).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 17, 0).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 17, 30).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 18, 0).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 18, 30).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 19, 0).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 19, 30).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 20, 0).getTime(), false);
+      } else if (day === 'Saturday') {
+        times.set(new Date(year, month, dayOfMonth, 9, 0).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 9, 30).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 10, 0).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 10, 30).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 11, 0).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 11, 30).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 12, 0).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 13, 30).getTime(), true);
+        times.set(new Date(year, month, dayOfMonth, 14, 0).getTime(), false);
+      }
+
+      //Miramos los tiempos a los que empieza una cita y yas horas ocupadas las cambiamos a false
+      for (let appointment of userAppointments[1]) {
+        const startTime = appointment.appointmentStart.getTime();
+        const endTime = appointment.appointmentEnd.getTime();
+
+        for (let time of times) {
+          if (time[0] === startTime) {
+            console.log(new Date(time[0]));
+            times.set(time[0], false);
+          }
+        }
+      }
+      console.log(times);
+    }
+
+    return res.status(200).json({ totalTime, usersAppointments });
   } catch (error) {
     return next(
       setError(
