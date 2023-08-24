@@ -4,6 +4,8 @@ import { useForm } from "react-hook-form";
 import { createUser } from "../../services/API_user/user.service";
 import { UseCreateUserError } from "../../hooks/UseCreateUserError";
 import { Navigate } from "react-router-dom";
+import { Button, Input } from "@mui/material";
+import "./AddUser.css";
 
 const AddUser = () => {
   const [res, setRes] = useState({});
@@ -33,61 +35,66 @@ const AddUser = () => {
   }
   return (
     <>
-      <div className="form-wrap">
-        <h1>Crear Cuenta</h1>
-        <form onSubmit={handleSubmit(formSubmit)}>
-          <div className="user_container form-group">
-            <input
-              className="input_user"
-              type="text"
-              id="name"
-              name="name"
-              autoComplete="false"
-              {...register("name", { required: true })}
-            />
-            <label htmlFor="custom-input" className="custom-placeholder">
-              name
-            </label>
-          </div>
-          <div className="password_container form-group">
-            <input
-              className="input_user"
-              type="surname"
-              id="surname"
-              name="surname"
-              autoComplete="false"
-              {...register("surname", { required: true })}
-            />
-            <label htmlFor="custom-input" className="custom-placeholder">
-              surname
-            </label>
-          </div>
+      <div className="create_user_container">
+        <div className="create_user_form_container">
+          <h1>Crear Cuenta</h1>
+          <p>Please, enter the data</p>
+          <form
+            className="create_user_form"
+            onSubmit={handleSubmit(formSubmit)}
+          >
+            <div className="name_container form-group">
+              <Input
+                className="input_user"
+                type="text"
+                id="name"
+                name="name"
+                placeholder="Name"
+                autoComplete="false"
+                {...register("name", { required: true })}
+              />
+            </div>
+            <div className="password_container form-group">
+              <Input
+                className="input_user"
+                type="surname"
+                id="surname"
+                name="surname"
+                placeholder="Surname"
+                autoComplete="false"
+                {...register("surname", { required: true })}
+              />
+            </div>
 
-          <div className="email_container form-group">
-            <input
-              className="input_user"
-              type="email"
-              id="email"
-              name="email"
-              autoComplete="false"
-              {...register("email", { required: true })}
-            />
-            <label htmlFor="custom-input" className="custom-placeholder">
-              email
-            </label>
-          </div>
+            <div className="email_container form-group">
+              <Input
+                className="input_user"
+                type="email"
+                id="email"
+                name="email"
+                placeholder="Email"
+                autoComplete="false"
+                {...register("email", { required: true })}
+              />
+            </div>
 
-          <div className="btn_container">
-            <button
-              className="btn"
-              type="submit"
-              disabled={send}
-              style={{ background: send ? "#49c1a388" : "#2f7a67" }}
-            >
-              Create User
-            </button>
-          </div>
-        </form>
+            <div className="btn_container">
+              <Button
+                sx={{
+                  backgroundColor: "#dc136c",
+                  ":hover": { backgroundColor: "#f991cc" },
+                  width: "px",
+                }}
+                className="btn"
+                variant="contained"
+                type="submit"
+                disabled={send}
+              >
+                Create User
+              </Button>
+            </div>
+          </form>
+        </div>
       </div>
     </>
   );

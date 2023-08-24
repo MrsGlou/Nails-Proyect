@@ -19,6 +19,15 @@ const SelectService = () => {
     fetchServices();
   }, []);
 
+  useEffect(() => {
+    // Limpiar el valor del localStorage cuando el componente se monte
+    localStorage.removeItem("Manicura");
+    localStorage.removeItem("Pedicura");
+    localStorage.removeItem("Pestaña");
+    localStorage.removeItem("Gel");
+    localStorage.removeItem("selectedServices");
+  }, []);
+
   const handleChangeManicure = (event) => {
     const serviceType = "Manicura";
     const id = event.target.value;
@@ -52,8 +61,6 @@ const SelectService = () => {
     keys.forEach((key) => {
       savedValues.push(localStorage.getItem(key));
     });
-
-    console.log(savedValues);
   };
 
   return (

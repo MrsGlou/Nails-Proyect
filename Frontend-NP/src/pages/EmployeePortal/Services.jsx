@@ -45,15 +45,26 @@ const Services = () => {
           <div className="service_type" key={service._id}>
             <div className="service_type_text_inside">
               <h4>{service.name}</h4>
+              <h4>{service.type}</h4>
               <h4>{service.price} €</h4>
               <h4>{service.time} minutes</h4>
             </div>
-            <div>
+            <div className="service_type_button">
               {" "}
               <Link to={`/platform/services/update/${service._id}`}>
-                <EditIcon className="update_service" />
+                <EditIcon
+                  sx={{
+                    color: "#dc136c",
+                    ":hover": { color: "#f991cc" },
+                  }}
+                  className="update_service"
+                />
               </Link>
               <DeleteIcon
+                sx={{
+                  color: "#dc136c",
+                  ":hover": { color: "#f991cc" },
+                }}
                 className="delete_service"
                 onClick={() => handleSubmit(service)}
               />

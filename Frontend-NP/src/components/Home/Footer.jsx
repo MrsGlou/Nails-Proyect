@@ -27,7 +27,7 @@ const Footer = () => {
       </div>
       <div className="made_love">
         {" "}
-        <h3>Made with 💜 by Andrea</h3>
+        <h3>Made with 💗 by Andrea</h3>
       </div>
     </footer>
   );

@@ -4,6 +4,8 @@ import { useAuth } from "../../contexts/authContext";
 import { useEffect, useState } from "react";
 import { UseChangePasswordError } from "../../hooks/UseChangePasswordError";
 import { changePasswordUser } from "../../services/API_user/user.service";
+import "./ChangePassword.css";
+import { Input, Button } from "@mui/material";
 
 const ChangePassword = () => {
   const [res, setRes] = useState({});
@@ -46,58 +48,56 @@ const ChangePassword = () => {
 
   return (
     <>
-      <div className="form-wrap">
+      <div className="change_password_container">
         <h1>Change your password ♻</h1>
         <p>Please, enter your old and new passwords</p>
         <form onSubmit={handleSubmit(formSubmit)}>
           <div className="password_container form-group">
-            <input
+            <Input
               className="input_user"
               type="password"
               id="password"
               name="password"
+              placeholder="Old Password"
               autoComplete="false"
               {...register("password", { required: true })}
             />
-            <label htmlFor="custom-input" className="custom-placeholder">
-              Old password
-            </label>
           </div>
           <div className="newPassword_container form-group">
-            <input
+            <Input
               className="input_user"
               type="password"
               id="newPassword"
               name="newPassword"
+              placeholder="New Password"
               autoComplete="false"
               {...register("newPassword", { required: true })}
             />
-            <label htmlFor="custom-input" className="custom-placeholder">
-              New password
-            </label>
           </div>
           <div className="confirmPassword_container form-group">
-            <input
+            <Input
               className="input_user"
               type="password"
               id="confirmPassword"
               name="confirmPassword"
+              placeholder="Confirm new password"
               autoComplete="false"
               {...register("confirmPassword", { required: true })}
             />
-            <label htmlFor="custom-input" className="custom-placeholder">
-              Confirm new password
-            </label>
           </div>
           <div className="btn_container">
-            <button
+            <Button
+              sx={{
+                backgroundColor: "#cd825b",
+                ":hover": { backgroundColor: "#f991cc" },
+              }}
               className="btn"
+              variant="contained"
               type="submit"
               disabled={send}
-              style={{ background: send ? "#49c1a388" : "#49c1a2" }}
             >
               CHANGE PASSWORD
-            </button>
+            </Button>
           </div>
         </form>
       </div>

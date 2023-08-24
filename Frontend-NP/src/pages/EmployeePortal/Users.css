@@ -1,37 +1,36 @@
-.services_container {
+.users_container {
   font-size: 20px;
   display: flex;
   justify-content: center;
   flex-direction: column;
   margin: 0 30px;
 }
-
-.services_container > section {
+.user_container > section {
   width: 1500px;
 }
 
-.create_service_btn {
+.create_user_btn {
   display: flex;
   justify-content: end;
   align-items: flex-end;
   margin: 30px 100px;
 }
 
-.service_type {
+.user_container {
   display: flex;
   justify-content: space-around;
   align-items: end;
   margin: 0 20px;
 }
 
-.service_type_text_inside {
+.user_text_inside {
   max-width: 1900px;
   display: grid;
-  grid-template-columns: 700px 450px 120px 130px;
+  grid-template-columns: 200px 450px 120px 130px;
   gap: 5px;
 }
 
-.service_type_button {
+.user_delete_button {
   display: flex;
   gap: 15px;
 }

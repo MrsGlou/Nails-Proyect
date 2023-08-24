@@ -4,7 +4,7 @@ const {
   update,
   verifyOutside,
   closedAppointment,
-  getAviableAppointment,
+  getAvailableAppointment,
   deleteAppointment,
   getAll,
   getByID,
@@ -14,13 +14,12 @@ const {
   isAuthAdmin,
   isAuthSuperAdmin,
 } = require('../../middlewares/auth.middleware');
-const { getById } = require('../controllers/user.controller');
 const AppointmentRoutes = express.Router();
 
 AppointmentRoutes.post('/create', create);
 AppointmentRoutes.post('/verify', verifyOutside);
 AppointmentRoutes.post('/closed', closedAppointment);
-AppointmentRoutes.post('/aviable', getAviableAppointment);
+AppointmentRoutes.post('/available', getAvailableAppointment);
 AppointmentRoutes.post('/delete', deleteAppointment);
 AppointmentRoutes.get('/', getAll);
 AppointmentRoutes.get('/:id', getByID);

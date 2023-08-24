@@ -1,8 +1,9 @@
-.login_container {
+.profile_container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 91vh;
+  gap: 100px;
   background: linear-gradient(
     to right,
     var(--fifth-color),
@@ -11,7 +12,7 @@
   );
 }
 
-.login_form_container {
+.profile_data_container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -26,19 +27,31 @@
     rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
 }
 
-.login_form_container > h1 {
+.profile_data_container > h1 {
   font-size: 50px;
   color: var(--fourth-color);
 }
 
-.login_form {
+.user_data_container {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
 }
 
-.btn_container > button {
-  width: 190px;
+.data_profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 60px;
+}
+
+.data_profile > h4 {
+  font-size: 24px;
+}
+
+.data_profile > h3 {
+  font-size: 20px;
+}
+
+.user_data_change_container {
+  display: flex;
+  gap: 20px;
 }

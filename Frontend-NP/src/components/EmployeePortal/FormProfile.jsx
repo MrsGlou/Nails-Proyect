@@ -1,9 +1,10 @@
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { useAuth } from "../../contexts/authContext";
 import { updateUser } from "../../services/API_user/user.service";
 import { UseUpdateUserError } from "../../hooks/UseUpdateUserError";
+import { Input, Button } from "@mui/material";
+import "./FormProfile.css";
 
 const FormProfile = () => {
   const [res, setRes] = useState({});
@@ -37,49 +38,47 @@ const FormProfile = () => {
 
   return (
     <>
-      <div className="containerProfile">
-        <div className="form-wrap formProfile">
-          <h1>Change your data profile ♻</h1>
-          <p>Please, enter your new data profile</p>
-          <form onSubmit={handleSubmit(formSubmit)}>
-            <div className="user_container form-group">
-              <input
-                className="input_user"
-                type="text"
-                id="name"
-                name="name"
-                autoComplete="false"
-                {...register("name")}
-              />
-              <label htmlFor="custom-input" className="custom-placeholder">
-                Nombre
-              </label>
-            </div>
-            <div className="user_container form-group">
-              <input
-                className="input_user"
-                type="text"
-                id="surname"
-                name="surname"
-                autoComplete="false"
-                {...register("surname")}
-              />
-              <label htmlFor="custom-input" className="custom-placeholder">
-                Apellidos
-              </label>
-            </div>
-            <div className="btn_container">
-              <button
-                className="btn"
-                type="submit"
-                disabled={send}
-                style={{ background: send ? "#49c1a388" : "#49c1a2" }}
-              >
-                CHANGE DATA PROFILE
-              </button>
-            </div>
-          </form>
-        </div>
+      <div className="edit_profile_container">
+        <h1>Change your data profile ♻</h1>
+        <p>Please, enter your new data profile</p>
+        <form onSubmit={handleSubmit(formSubmit)}>
+          <div className="user_container form-group">
+            <Input
+              className="input_user"
+              type="text"
+              id="name"
+              name="name"
+              placeholder="Name"
+              autoComplete="false"
+              {...register("name")}
+            />
+          </div>
+          <div className="user_container form-group">
+            <Input
+              className="input_user"
+              type="text"
+              id="surname"
+              name="surname"
+              placeholder="Surname"
+              autoComplete="false"
+              {...register("surname")}
+            />
+          </div>
+          <div className="btn_container">
+            <Button
+              sx={{
+                backgroundColor: "#cd825b",
+                ":hover": { backgroundColor: "#f991cc" },
+              }}
+              className="btn"
+              variant="contained"
+              type="submit"
+              disabled={send}
+            >
+              CHANGE DATA PROFILE
+            </Button>
+          </div>
+        </form>
       </div>
     </>
   );

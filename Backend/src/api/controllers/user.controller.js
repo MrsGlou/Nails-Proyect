@@ -344,7 +344,7 @@ const update = async (req, res, next) => {
     patchUser.password = req.user.password;
     patchUser.rol = req.user.rol;
     patchUser.confirmationCode = req.user.confirmationCode;
-    patchUser.check = req.user.check;
+    patchUser.validated = req.user.validated;
     patchUser.email = req.user.email;
     patchUser.appontments = req.user.appointments;
 

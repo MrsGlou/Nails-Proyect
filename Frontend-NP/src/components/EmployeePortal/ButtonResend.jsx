@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/authContext";
 import { useResendValidatedError } from "../../hooks/useResendValidatedError";
 import { resendValidatedUser } from "../../services/API_user/user.service";
+import { Button } from "@mui/material";
 
 const ButtonResend = ({ setReloadPageError }) => {
   const [res, setRes] = useState({});
@@ -35,15 +36,19 @@ const ButtonResend = ({ setReloadPageError }) => {
   return (
     <div>
       {" "}
-      <button
+      <Button
+        sx={{
+          backgroundColor: "#f991cc",
+          ":hover": { backgroundColor: "#dc136c" },
+        }}
+        variant="contained"
         id="btnResend"
         className="btn"
         disabled={send}
-        style={{ background: send ? "#49c1a388" : "#49c1a2" }}
         onClick={() => handleReSend()}
       >
         Resend Code
-      </button>
+      </Button>
     </div>
   );
 };

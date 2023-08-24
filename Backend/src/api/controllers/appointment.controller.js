@@ -243,7 +243,7 @@ const deleteAppointment = async (req, res, next) => {
 
 //--------- GET DISPONIBILITY APPOINTMENT ---------//
 //5. Calcula las citas disponibles en función de la duración de la cita(GET DISPONIBILITY -> Appointment)
-const getAviableAppointment = async (req, res, next) => {
+const getAvailableAppointment = async (req, res, next) => {
   try {
     //Traaemos los servicios que el cliente solicita y miramos el timepo total
     const date = req.body.selectedDate;
@@ -284,10 +284,6 @@ const getAviableAppointment = async (req, res, next) => {
 
     //Traemos todas las citas
     const appointments = await Appointment.find();
-
-    const year = newDate.getFullYear();
-    const month = newDate.getMonth();
-    const dayOfMonth = newDate.getDate();
     const day = dayNumberToDayString(newDate.getDay());
 
     //Haccemos un nuevo array con los ids de los usuarios y sus citas pendientes
@@ -305,6 +301,8 @@ const getAviableAppointment = async (req, res, next) => {
       usersAppointments.set(userBasic._id.toString(), appointmentByUser);
     }
 
+    const finalMap = new Map();
+
     //Creamos el objeto con todas las horas disponibles por usuario
     for (let userAppointments of usersAppointments) {
       let times = new Map();
@@ -312,52 +310,100 @@ const getAviableAppointment = async (req, res, next) => {
       //Miramos que el dia sea entre diario para todas las horas y los sabados solo por la mañana
 
       if (day !== 'Saturday' && 'Sunday') {
-        times.set(new Date(year, month, dayOfMonth, 9, 0).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 9, 30).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 10, 0).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 10, 30).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 11, 0).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 11, 30).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 12, 0).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 13, 30).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 14, 0).getTime(), false);
-        times.set(new Date(year, month, dayOfMonth, 16, 0).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 16, 30).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 17, 0).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 17, 30).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 18, 0).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 18, 30).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 19, 0).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 19, 30).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 20, 0).getTime(), false);
+        times.set('09:00', true);
+        times.set('09:30', true);
+        times.set('10:00', true);
+        times.set('10:30', true);
+        times.set('11:00', true);
+        times.set('11:30', true);
+        times.set('12:00', true);
+        times.set('12:30', true);
+        times.set('13:00', true);
+        times.set('13:30', true);
+        times.set('14:00', false);
+        times.set('16:00', true);
+        times.set('16:30', true);
+        times.set('17:00', true);
+        times.set('17:30', true);
+        times.set('18:00', true);
+        times.set('18:30', true);
+        times.set('19:00', true);
+        times.set('19:30', true);
+        times.set('20:00', false);
       } else if (day === 'Saturday') {
-        times.set(new Date(year, month, dayOfMonth, 9, 0).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 9, 30).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 10, 0).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 10, 30).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 11, 0).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 11, 30).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 12, 0).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 13, 30).getTime(), true);
-        times.set(new Date(year, month, dayOfMonth, 14, 0).getTime(), false);
+        times.set('09:00', true);
+        times.set('09:30', true);
+        times.set('10:00', true);
+        times.set('10:30', true);
+        times.set('11:00', true);
+        times.set('11:30', true);
+        times.set('12:00', true);
+        times.set('12:30', true);
+        times.set('13:00', true);
+        times.set('13:30', true);
+        times.set('14:00', false);
       }
 
       //Miramos los tiempos a los que empieza una cita y yas horas ocupadas las cambiamos a false
       for (let appointment of userAppointments[1]) {
-        const startTime = appointment.appointmentStart.getTime();
-        const endTime = appointment.appointmentEnd.getTime();
+        const startTime = appointment.appointmentStart;
+        const endTime = appointment.appointmentEnd;
+
+        //Comporbamos que las horas estan disponibles
 
         for (let time of times) {
-          if (time[0] === startTime) {
-            console.log(new Date(time[0]));
+          if (
+            (time[0] > startTime && time[0] < endTime) ||
+            time[0] === startTime
+          ) {
             times.set(time[0], false);
           }
         }
       }
-      console.log(times);
-    }
 
-    return res.status(200).json({ totalTime, usersAppointments });
+      let availableTimes = [];
+
+      //Introducimos las horas disponibles en el nuevo array
+
+      for (let time of times) {
+        if (time[1] && totalTime === 30) {
+          availableTimes.push(time[0]);
+        } else if (time[1]) {
+          let timeCounter = 30;
+
+          while (timeCounter < totalTime) {
+            //console.log(time[0]);
+            let appointmentTime = new Date(
+              `1970-01-01T${time[0]}:00Z`
+            ).getTime();
+            let timeCounterSec = timeCounter * 60000;
+            let totalTimeAppointment = new Date(
+              appointmentTime + timeCounterSec
+            );
+
+            let nextAppointment = totalTimeAppointment
+              .toISOString()
+              .substr(11, 5);
+            //console.log(nextAppointment);
+
+            timeCounter += 30;
+
+            if (times.get(nextAppointment)) {
+              if (timeCounter === totalTime) {
+                availableTimes.push(time[0]);
+                break;
+              }
+            } else {
+              break;
+            }
+          }
+        }
+      }
+      finalMap.set(userAppointments[0], availableTimes);
+    }
+    const finalObj = Object.fromEntries(finalMap);
+    console.log(finalObj);
+    return res.status(200).json(finalObj);
   } catch (error) {
     return next(
       setError(
@@ -387,7 +433,7 @@ const getAll = async (req, res, next) => {
   }
 };
 
-//--------- GET BY EMAIL APPOINTMENT ---------//
+//--------- GET BY DAY APPOINTMENT ---------//
 const getByEmail = async (req, res, next) => {
   try {
     const { email } = req.body;
@@ -437,7 +483,7 @@ module.exports = {
   verifyOutside,
   closedAppointment,
   deleteAppointment,
-  getAviableAppointment,
+  getAvailableAppointment,
   getAll,
   getByEmail,
   getByID,
