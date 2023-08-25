@@ -49,7 +49,7 @@ const create = async (req, res, next) => {
         let updateUser;
 
         try {
-          user.appointments.push(newAppointment._id);
+          user.appointment.push(newAppointment._id);
           updateUser = await User.findByIdAndUpdate(req.body.user, user);
         } catch (error) {
           return next(error);
@@ -218,15 +218,15 @@ const closedAppointment = async (req, res, next) => {
 //--------- DELETE APPOINTMENT ---------//
 const deleteAppointment = async (req, res, next) => {
   try {
-    const { _id } = req.params;
-    await Appointment.findById(_id);
+    const { id } = req.params;
+    await Appointment.findByIdAndDelete(id);
 
-    if (await Appointment.findById(_id)) {
-      return res.status(404).json('Not delete appointment');
+    if (await Appointment.findById(id)) {
+      return res.status(404).json('Error deleting appointment');
     } else {
       await User.updateMany(
-        { appointment: _id },
-        { $pull: { appointment: _id } }
+        { appointment: id },
+        { $pull: { appointment: id } }
       );
 
       return res.status(200).json('Ok delete appointment');
@@ -283,7 +283,7 @@ const getAvailableAppointment = async (req, res, next) => {
     }
 
     //Traemos todas las citas
-    const appointments = await Appointment.find();
+    const appointments = await Appointment.find({ day: date });
     const day = dayNumberToDayString(newDate.getDay());
 
     //Haccemos un nuevo array con los ids de los usuarios y sus citas pendientes
@@ -402,7 +402,7 @@ const getAvailableAppointment = async (req, res, next) => {
       finalMap.set(userAppointments[0], availableTimes);
     }
     const finalObj = Object.fromEntries(finalMap);
-    console.log(finalObj);
+
     return res.status(200).json(finalObj);
   } catch (error) {
     return next(
@@ -434,24 +434,22 @@ const getAll = async (req, res, next) => {
 };
 
 //--------- GET BY DAY APPOINTMENT ---------//
-const getByEmail = async (req, res, next) => {
+const getByDay = async (req, res, next) => {
   try {
-    const { email } = req.body;
-    const appointmentByEmail = await Appointment.find({ email }).populate(
-      'user'
-    );
-    if (appointmentByEmail) {
-      return res.status(200).json({ appointmentByEmail });
+    const date = req.body.date;
+    console.log(date);
+    const appointmentsByDay = await Appointment.find({ day: date });
+    console.log(appointmentsByDay);
+    if (appointmentsByDay.length > 0) {
+      return res.status(200).json({ appointmentsByDay });
     } else {
-      return res
-        .status(404)
-        .json('Error to controller getByEamil Appointments');
+      return res.status(404).json('There are no dates that day');
     }
   } catch (error) {
     return next(
       setError(
         500 || error.code,
-        error.message || 'General error get by Email appointment'
+        error.message || 'General error get by day appointment'
       )
     );
   }
@@ -485,6 +483,6 @@ module.exports = {
   deleteAppointment,
   getAvailableAppointment,
   getAll,
-  getByEmail,
+  getByDay,
   getByID,
 };

@@ -406,10 +406,7 @@ const deleteUser = async (req, res, next) => {
     if (await User.findById(id)) {
       return res.status(404).json('Dont delete user');
     } else {
-      await Appointment.updateMany(
-        { services: id },
-        { $pull: { services: id } }
-      );
+      await Appointment.updateMany({ user: id }, { $pull: { user: id } });
       return res.status(200).json('Ok delete user');
     }
   } catch (error) {

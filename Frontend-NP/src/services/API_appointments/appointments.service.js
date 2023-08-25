@@ -6,3 +6,10 @@ export const getAvailableAppointments = async (formData) => {
     .then((res) => res)
     .catch((error) => error);
 };
+
+//------------GET APPOINTMENTS BY DAY --------------
+export const getByDay = async (formData) => {
+  return APIuser.post(`/appointment/getbyday`, formData)
+    .then((res) => res)
+    .catch((error) => error);
+};

@@ -7,10 +7,11 @@ const {
   getAvailableAppointment,
   deleteAppointment,
   getAll,
+  getByDay,
   getByID,
-  getByEmail,
 } = require('../controllers/appointment.controller');
 const {
+  isAuth,
   isAuthAdmin,
   isAuthSuperAdmin,
 } = require('../../middlewares/auth.middleware');
@@ -22,8 +23,9 @@ AppointmentRoutes.post('/closed', closedAppointment);
 AppointmentRoutes.post('/available', getAvailableAppointment);
 AppointmentRoutes.post('/delete', deleteAppointment);
 AppointmentRoutes.get('/', getAll);
+AppointmentRoutes.post('/getbyday', [isAuth], getByDay);
 AppointmentRoutes.get('/:id', getByID);
-AppointmentRoutes.get('/getEmail', getByEmail);
+AppointmentRoutes.delete('/:id', [isAuth], deleteAppointment);
 
 AppointmentRoutes.patch('/update/update', update);
 
