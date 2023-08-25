@@ -1,6 +1,6 @@
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 
-export const useResendValidatedError = (res, setReloadPageError, setRes) => {
+export const UseResendValidatedError = (res, setReloadPageError, setRes) => {
   //200
   if (res?.status == 200)
     Swal.fire({

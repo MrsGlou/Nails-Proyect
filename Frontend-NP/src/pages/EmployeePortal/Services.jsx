@@ -41,6 +41,12 @@ const Services = () => {
         </Button>
       </NavLink>{" "}
       <section>
+        <div className="service_type_names">
+          <h2>Nombre</h2>
+          <h2>Tipo</h2>
+          <h2>Precio</h2>
+          <h2>Tiempo</h2>
+        </div>
         {services?.map((service) => (
           <div className="service_type" key={service._id}>
             <div className="service_type_text_inside">

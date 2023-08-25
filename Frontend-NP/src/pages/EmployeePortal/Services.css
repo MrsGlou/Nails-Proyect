@@ -17,6 +17,17 @@
   margin: 30px 100px;
 }
 
+.service_type_names {
+  display: grid;
+  grid-template-columns: 700px 450px 120px 130px;
+  gap: 5px;
+  color: var(--third-color);
+}
+
+.service_type_names > h2 {
+  text-decoration: underline;
+}
+
 .service_type {
   display: flex;
   justify-content: space-around;

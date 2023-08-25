@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/authContext";
-import { UseResendValidatedError } from "../../hooks/useResendValidatedError";
+import { UseResendValidatedError } from "../../hooks/UseResendValidatedError";
 import { resendValidatedUser } from "../../services/API_user/user.service";
 import { Button } from "@mui/material";
 
