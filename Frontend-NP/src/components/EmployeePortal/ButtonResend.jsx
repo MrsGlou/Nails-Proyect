@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "../../contexts/authContext";
-import { useResendValidatedError } from "../../hooks/useResendValidatedError";
+import { UseResendValidatedError } from "../../hooks/useResendValidatedError";
 import { resendValidatedUser } from "../../services/API_user/user.service";
 import { Button } from "@mui/material";
 
@@ -30,7 +30,7 @@ const ButtonResend = ({ setReloadPageError }) => {
   };
 
   useEffect(() => {
-    useResendValidatedError(res, setReloadPageError, setRes);
+    UseResendValidatedError(res, setReloadPageError, setRes);
   }, [res]);
 
   return (

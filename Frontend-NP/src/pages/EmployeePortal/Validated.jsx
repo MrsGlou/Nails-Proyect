@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { validatedCodeUser } from "../../services/API_user/user.service";
-import { UseValidatedCodeError } from "../../hooks/UseValidatedError";
+import { UseValidatedError } from "../../hooks/UseValidatedError";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../../contexts/authContext";
 import ButtonResend from "../../components/EmployeePortal/ButtonResend";
@@ -45,7 +45,7 @@ const Validated = () => {
   };
 
   useEffect(() => {
-    UseValidatedCodeError(
+    UseValidatedError(
       res,
       setDeleteUser,
       setValidatedOk,

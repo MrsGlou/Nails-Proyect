@@ -11,7 +11,6 @@ export const UseGetAppointments = (res, setRes) => {
   }
 
   //! -------- 404 = There are no dates
-
   if (res?.status == 404) {
     setRes(() => ({}));
     Swal.fire({
