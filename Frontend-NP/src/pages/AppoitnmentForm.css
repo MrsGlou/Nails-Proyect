@@ -53,3 +53,11 @@
   background: var(--fourth-color);
   color: var(--firts-color);
 }
+
+.btn_form_data_container{
+  padding: 0  0 20px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px
+}

@@ -13,6 +13,25 @@ export const Dashboard = () => {
   const [res, setRes] = useState({});
   const [send, setSend] = useState(false);
 
+  useEffect(() => {
+    const date = new Date(Date.now());
+    const day = date.getDate().toString().padStart(2, "0")
+    const month = (date.getMonth()+1).toString().padStart(2, "0")
+    const year = date.getFullYear()
+    const today = `${year}-${month}-${day}`
+    const custonFormData = {
+      date: today,
+    };
+    
+    const appointmentsToday = async()=> {
+      setSend(true);
+      const response = await getByDay(custonFormData);
+      setAppointmentsByDay(response.data)
+      setSend(false);
+    }
+    appointmentsToday();
+  }, [])
+
   const handleChange = async (newTime) => {
     const appointmentDate = newTime.format("YYYY-MM-DD");
     const custonFormData = {
@@ -20,7 +39,8 @@ export const Dashboard = () => {
     };
     setSend(true);
     const response = await getByDay(custonFormData);
-    setAppointmentsByDay(response.data.appointmentsByDay);
+    //console.log(response.data.appointmentsByDay)
+    setAppointmentsByDay(response.data);
     setSend(false);
   };
 
@@ -38,7 +58,7 @@ export const Dashboard = () => {
         />
       </LocalizationProvider>
       <section>
-        {appointmentsByDay?.map((appointmentByDay) => (
+        {appointmentsByDay.length > 0 ? appointmentsByDay?.map((appointmentByDay) => (
           <div key={appointmentByDay._id}>
             <h3>
               {appointmentByDay.name} {appointmentByDay.surname}
@@ -48,11 +68,13 @@ export const Dashboard = () => {
             <h3>{appointmentByDay.state}</h3>
             <h3>{appointmentByDay.appointmentStart}</h3>
             <h3>{appointmentByDay.appointmentEnd}</h3>
-            <h3>{appointmentByDay.user}</h3>
-            <h3>{appointmentByDay.services}</h3>
+            <h3>{appointmentByDay.user.name}</h3>
+            <div>{appointmentByDay.service?.map((service) =>(
+              <div key={service._id}> <h4>{service.name}</h4></div>
+            ))}</div>
             <ButtonDeleteAppointment />
           </div>
-        ))}
+        )) : "No hay citas para este día"}
       </section>
     </div>
   );

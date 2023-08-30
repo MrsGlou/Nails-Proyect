@@ -13,3 +13,10 @@ export const getByDay = async (formData) => {
     .then((res) => res)
     .catch((error) => error);
 };
+
+//------------CREATE APPOINTMENT --------------
+export const createAppointment = async (formData) => {
+  return APIuser.post("/appointment/create", formData)
+    .then((res) => res)
+    .catch((error) => error);
+};

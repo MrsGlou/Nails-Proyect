@@ -28,22 +28,43 @@ const create = async (req, res, next) => {
       res.status(404).send('El empleado no existe.');
     }
 
-    const servicesIds = req.body.service;
-    const services = await Service.findById(servicesIds);
+    const servicesIds = req.body.service
+    const services = await Service.find({
+      _id: { $in: servicesIds },
+    });
+
+    let totalTime = 0;
+    let totalPrice = 0;
+
     if (!services) {
       res.status(400).send('Algunos de los servicios no existen.');
       return;
+    } else {
+      services.forEach((service) => {
+        totalTime += service.time;
+        totalPrice += service.price;
+      });
     }
+
+    
+    const startTime = new Date(`1970-01-01T${req.body.appointmentStart}:00`).getTime();
+    let endTime = new Date( startTime + totalTime * 60000).toLocaleTimeString();
+    endTime = endTime.slice(0,5)
+    
+
     const newAppointment = new Appointment({
       ...req.body,
+      appointmentEnd: endTime,
+      totalPrice: totalPrice,
+      totalTime: totalTime,
       user: req.body.user,
-      service: req.body.service,
+      day: req.body.selectedDate,
     });
 
     try {
-      console.log(newAppointment);
+      console.log(newAppointment)
       const createAppointment = await newAppointment.save();
-
+      
       if (createAppointment) {
         const user = await User.findById(req.body.user);
         let updateUser;
@@ -89,51 +110,6 @@ const create = async (req, res, next) => {
   }
 };
 
-//--------- MODIFY APPOINTMENT ---------//
-const update = async (req, res, next) => {
-  try {
-    await Appointment.syncIndexes();
-    const { id } = req.params;
-    const patchAppointment = new Appointment(req.body);
-    patchAppointment._id = id;
-    patchAppointment.state = req.body.state;
-
-    try {
-      await Appointment.findByIdAndUpdate(id, patchAppointment);
-      const updateAppointment = await Appointment.findById(id);
-
-      if (!updateAppointment) {
-        return res.status(404).json('Appointment not found');
-      }
-
-      const updateKeys = Object.keys(req.body);
-      const testUpdate = [];
-      updateKeys.forEach((item) => {
-        if (updateAppointment[item] == req.body[item]) {
-          testUpdate.push({
-            [item]: true,
-          });
-        } else {
-          testUpdate.push({
-            [item]: false,
-          });
-        }
-      });
-      return res.status(200).json({
-        testUpdate,
-      });
-    } catch (error) {
-      return res.status(404).json(error.message);
-    }
-  } catch (error) {
-    return next(
-      setError(
-        500 || error.code,
-        error.message || 'General error update appointment'
-      )
-    );
-  }
-};
 
 //--------- VERIFY APPOINTMENT ---------//
 const verifyOutside = async (req, res, next) => {
@@ -248,7 +224,8 @@ const getAvailableAppointment = async (req, res, next) => {
     //Traaemos los servicios que el cliente solicita y miramos el timepo total
     const date = req.body.selectedDate;
     const servicesIds = req.body.selectedServices;
-
+    console.log(servicesIds)
+  
     const dayNumberToDayString = (dayIndex) => {
       return [
         'Sunday',
@@ -403,7 +380,7 @@ const getAvailableAppointment = async (req, res, next) => {
     }
     const finalObj = Object.fromEntries(finalMap);
 
-    return res.status(200).json(finalObj);
+    return res.status(200).json( finalObj);
   } catch (error) {
     return next(
       setError(
@@ -437,13 +414,11 @@ const getAll = async (req, res, next) => {
 const getByDay = async (req, res, next) => {
   try {
     const date = req.body.date;
-    console.log(date);
-    const appointmentsByDay = await Appointment.find({ day: date });
-    console.log(appointmentsByDay);
+    const appointmentsByDay = await Appointment.find({ day: date }).populate("user").populate("service");
     if (appointmentsByDay.length > 0) {
-      return res.status(200).json({ appointmentsByDay });
+      return res.status(200).json( appointmentsByDay );
     } else {
-      return res.status(404).json('There are no dates that day');
+      return res.status(200).json(appointmentsByDay);
     }
   } catch (error) {
     return next(
@@ -477,7 +452,6 @@ const getByID = async (req, res, next) => {
 
 module.exports = {
   create,
-  update,
   verifyOutside,
   closedAppointment,
   deleteAppointment,

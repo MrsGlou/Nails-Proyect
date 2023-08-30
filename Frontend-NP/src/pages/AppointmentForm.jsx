@@ -2,6 +2,7 @@ import { useState } from "react";
 import SelectDate from "./Appointment/SelectDate";
 import SelectService from "./Appointment/SelectService";
 import IntroduceData from "./Appointment/IntroduceData";
+import { Button } from "@mui/material";
 import "./AppoitnmentForm.css";
 
 const AppointmentForm = () => {
@@ -28,18 +29,29 @@ const AppointmentForm = () => {
       {pasoActual === 1 && <SelectService />}
       {pasoActual === 2 && <SelectDate />}
       {pasoActual === 3 && <IntroduceData />}
-      <div>
+      <div className="btn_form_data_container">
         {pasoActual > 1 && (
-          <button type="form_button" onClick={handlePasoAnterior}>
+          <Button 
+          sx={{
+            backgroundColor: "#dc136c",
+            ":hover": { backgroundColor: "#f991cc" },
+          }}
+          className="btn_form"
+          variant="contained"
+          type="form_button" onClick={handlePasoAnterior}>
             Anterior
-          </button>
+          </Button>
         )}
         {pasoActual < 3 && (
-          <button type="form_button" onClick={handleSiguientePaso}>
+          <Button        sx={{
+            backgroundColor: "#dc136c",
+            ":hover": { backgroundColor: "#f991cc" },
+          }}
+          className="btn_form"
+          variant="contained" type="form_button" onClick={handleSiguientePaso}>
             Siguiente
-          </button>
+          </Button>
         )}
-        {pasoActual === 3 && <button type="submit">Enviar</button>}
       </div>
     </div>
   );

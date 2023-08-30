@@ -1,7 +1,6 @@
 const express = require('express');
 const {
   create,
-  update,
   verifyOutside,
   closedAppointment,
   getAvailableAppointment,
@@ -27,6 +26,5 @@ AppointmentRoutes.post('/getbyday', [isAuth], getByDay);
 AppointmentRoutes.get('/:id', getByID);
 AppointmentRoutes.delete('/:id', [isAuth], deleteAppointment);
 
-AppointmentRoutes.patch('/update/update', update);
 
 module.exports = AppointmentRoutes;

@@ -1,90 +1,101 @@
+import { Button, Input } from "@mui/material";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
+import { Navigate } from "react-router-dom";
+import { UseCreateAppointmentError } from "../../hooks/UseCreateAppointmentError";
+import { createAppointment } from "../../services/API_appointments/appointments.service";
 
 const IntroduceData = () => {
   const { handleSubmit, register } = useForm();
   const [res, setRes] = useState({});
   const [send, setSend] = useState(false);
+  const [okCreate, setOkCreate] = useState(false);
 
-  //! 1) ------------------ FUNCION QUE GESTIONA EL FORMULARIO----------
+ // Gestionamos formulario 
   const formSubmit = async (formData) => {
+    const selectedDate = localStorage.getItem("selectedDate");
+    const user = localStorage.getItem("employee");
+    const appointmentStart =localStorage.getItem("appointmentStart");
+    const finalService =localStorage.getItem("selectedServices");
+    let service = finalService.split(/,/)
+    const custonFormData = {...formData, selectedDate, user, appointmentStart, service}
+
     setSend(true);
-    //setRes(await createAppointment(formData));
+    setRes(await createAppointment(custonFormData));
     setSend(false);
   };
 
-  //! 2) ------------------ LOS USEEFFECT QUE GESTIONAN LA RESPUESTA: ERRORES Y 200
+  //Gestionamos respuesta
 
   useEffect(() => {
-    console.log(res);
-    //useCreateAppointmentError(res, setLoginOk, userLogin, setRes);
+    UseCreateAppointmentError(res, setOkCreate, setRes);
   }, [res]);
+
+  if (okCreate) {
+    return <Navigate to="/" />;
+  }
 
   return (
     <div className="form_date_client_warp">
       <h2 className="form_client_tittle">Introduce tus datos</h2>
       <form onSubmit={handleSubmit(formSubmit)}>
         <div className="name_container form_client_group">
-          <input
+          <Input
             className="input_user"
             type="name"
             id="name"
             name="name"
+            placeholder="Nombre"
             autoComplete="false"
             {...register("name", { required: true })}
           />
-          <label htmlFor="custom_input" className="custom_placeholder">
-            Nombre
-          </label>
         </div>
         <div className="surname_container form_client_group">
-          <input
+          <Input
             className="input_user"
             type="surname"
             id="surname"
             name="surname"
+            placeholder="Apellido"
             autoComplete="false"
             {...register("surname", { required: true })}
           />
-          <label htmlFor="custom_input" className="custom_placeholder">
-            Apellido
-          </label>
         </div>
         <div className="phone_container form_client_group">
-          <input
+          <Input
             className="input_user"
             type="phone"
             id="phone"
             name="phone"
+            placeholder="Telefono"
             autoComplete="false"
             {...register("phone", { required: true })}
           />
-          <label htmlFor="custom_input" className="custom_placeholder">
-            Télefono
-          </label>
         </div>
         <div className="email_container form_client_group">
-          <input
+          <Input
             className="input_user"
             type="email"
             id="email"
             name="email"
+            placeholder="Correo"
             autoComplete="false"
             {...register("email", { required: true })}
           />
-          <label htmlFor="custom_input" className="custom_placeholder">
-            Correo
-          </label>
         </div>
         <div className="btn_container">
-          <button
+          <Button
+            sx={{
+              backgroundColor: "#dc136c",
+              ":hover": { backgroundColor: "#f991cc" },
+            }}
+            variant="contained"
             className="btn"
             type="submit"
             disabled={send}
-            style={{ background: send ? "#49c1a388" : "#49c1a2" }}
           >
             {send ? "Cargando ....." : "ENVIAR"}
-          </button>
+          </Button>
         </div>
       </form>
     </div>
