@@ -16,17 +16,32 @@
   margin: 30px 100px;
 }
 
+.user_names_container {
+  display: grid;
+  grid-template-columns: 200px 250px 150px 120px 130px;
+  gap: 5px;
+  padding-left: 10rem;
+  justify-content: flex-start;
+  color: var(--primary-color);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  background-color: var(--third-color);
+}
+
 .user_container {
   display: flex;
   justify-content: space-around;
   align-items: end;
   margin: 0 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  padding: 10px;
 }
 
 .user_text_inside {
   max-width: 1900px;
   display: grid;
-  grid-template-columns: 200px 450px 120px 130px;
+  grid-template-columns: 200px 250px 150px 120px 130px;
   gap: 5px;
 }
 

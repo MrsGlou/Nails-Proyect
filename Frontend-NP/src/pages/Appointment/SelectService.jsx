@@ -71,10 +71,10 @@ const SelectService = () => {
           <FormControl>
             <h3>Manicuras</h3>
             <RadioGroup onChange={handleChangeManicure}>
-              <div className="services_type">
+              <div className="appointment_services_type">
                 {services?.map((service) =>
                   service.type === "Manicuras" ? (
-                    <div className="service_type" key={service._id}>
+                    <div className="appointment_service_type" key={service._id}>
                       <h4>{service.name}</h4>
                       <h4>{service.price} €</h4>
                       <FormControlLabel
@@ -92,10 +92,10 @@ const SelectService = () => {
           <FormControl>
             <h3>Uñas Acrilicas y Gel Esculpidas</h3>
             <RadioGroup onChange={handleChangeGel}>
-              <div className="services_type">
+              <div className="appointment_services_type">
                 {services?.map((service) =>
                   service.type === "Uñas Acrilicas y Gel Esculpidas" ? (
-                    <div className="service_type" key={service._id}>
+                    <div className="appointment_service_type" key={service._id}>
                       <h4>{service.name}</h4>
                       <h4>{service.price} €</h4>
                       <FormControlLabel
@@ -113,10 +113,10 @@ const SelectService = () => {
           <FormControl>
             <h3>Pedicuras</h3>
             <RadioGroup onChange={handleChangePedicura}>
-              <div className="services_type">
+              <div className="appointment_services_type">
                 {services?.map((service) =>
                   service.type === "Pedicuras" ? (
-                    <div className="service_type" key={service._id}>
+                    <div className="appointment_service_type" key={service._id}>
                       <h4>{service.name}</h4>
                       <h4>{service.price} €</h4>
                       <FormControlLabel
@@ -134,10 +134,10 @@ const SelectService = () => {
           <FormControl>
             <h3>Pestañas</h3>
             <RadioGroup onChange={handleChangePestaña}>
-              <div className="services_type">
+              <div className="appointment_services_type">
                 {services?.map((service) =>
                   service.type === "Pestañas" ? (
-                    <div className="service_type" key={service._id}>
+                    <div className="appointment_service_type" key={service._id}>
                       <h4>{service.name}</h4>
                       <h4>{service.price} €</h4>
                       <FormControlLabel

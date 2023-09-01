@@ -3,7 +3,7 @@ import "./Services.css";
 
 const Services = () => {
   return (
-    <div className="services_home_container">
+    <div id="services_home_container" className="services_home_container">
       <section>
         <h2 className="services_home_title">
           Ofrecemos <span>servicios de uñas vip</span>

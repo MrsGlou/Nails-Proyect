@@ -1,0 +1,44 @@
+.appointmet_by_day_container {
+  display: flex;
+  flex-direction: column;
+  margin: 20px;
+}
+
+.appointmet_by_day_names_container {
+  display: flex;
+  justify-content: space-around;
+  color: var(--secondary-color);
+  background-color: var(--third-color);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  padding: 10px;
+}
+
+.appointmet_by_day {
+  display: flex;
+  flex-direction: column;
+  margin: 10px;
+}
+
+.appointment {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  padding: 10px;
+  gap: 5px;
+}
+
+.appointment > h4 {
+  overflow-wrap: break-word;
+  width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.appointment_services {
+  overflow-wrap: break-word;
+  width: 220px;
+}

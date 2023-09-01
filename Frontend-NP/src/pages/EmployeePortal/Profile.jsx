@@ -40,7 +40,7 @@ const Profile = () => {
               </div>
               <div className="data_profile">
                 <h4 className="Email">Email:</h4>
-                <h3> {userID.name}</h3>
+                <h3> {userID.email}</h3>
               </div>
             </figure>
           </div>

@@ -16,7 +16,7 @@ const Navbar = () => {
         </button>
       </NavLink>
 
-      <NavLink to="/">
+      <a href="#services_home_container">
         <Button
           sx={{
             color: "#dc136c",
@@ -28,8 +28,8 @@ const Navbar = () => {
         >
           SERVICIOS
         </Button>
-      </NavLink>
-      <NavLink to="/">
+      </a>
+      <a href="#about_us_container">
         <Button
           sx={{
             color: "#dc136c",
@@ -41,8 +41,8 @@ const Navbar = () => {
         >
           SOBRE NOSOTROS
         </Button>
-      </NavLink>
-      <NavLink to="/">
+      </a>
+      <a href="#our_team_container">
         <Button
           sx={{
             color: "#dc136c",
@@ -54,7 +54,7 @@ const Navbar = () => {
         >
           NUESTRO EQUIPO
         </Button>
-      </NavLink>
+      </a>
       <NavLink to="/platform/login">
         <Button
           sx={{

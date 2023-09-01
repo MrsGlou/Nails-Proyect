@@ -36,6 +36,9 @@ UserRoutes.patch(
 
 UserRoutes.get('/', getAll);
 UserRoutes.get('/:id', getById);
-UserRoutes.get('/forgotpassword/sendpassword/:id', sendPassword);
 UserRoutes.delete('/:id', [isAuthSuperAdmin], [isAuthAdmin], deleteUser);
+
+//---------------REDIRECT----------------
+UserRoutes.patch('/forgotpassword/sendpassword/:id', sendPassword);
+
 module.exports = UserRoutes;

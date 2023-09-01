@@ -53,10 +53,9 @@ const update = async (req, res, next) => {
     patchService.type = req.body.type;
 
     try {
-      console.log(req.body.id);
       await Service.findByIdAndUpdate(req.body.id, patchService);
-      const updateService = await Service.findById(req.body.id);
-      console.log(updateService);
+      const updateService = await Service.findById(id);
+
       if (!updateService) {
         return res.status(404).json('Service not found');
       }

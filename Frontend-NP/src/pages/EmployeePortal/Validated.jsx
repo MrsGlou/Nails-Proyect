@@ -57,13 +57,10 @@ const Validated = () => {
 
   //Estados de navegación
   if (validatedOk) {
-    console.log("entro");
     if (!localStorage.getItem("user")) {
-      console.log("entro if");
       setValidatedOk(() => false);
       //useAutoLogin(allUser, userLogin, setOkCheck);
     } else {
-      console.log("entro else");
       return <Navigate to="/platform" />;
     }
   }

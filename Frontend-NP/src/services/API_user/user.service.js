@@ -16,7 +16,7 @@ export const forgotPasswordUser = async (formData) => {
 };
 
 export const sendPasswordUser = async () => {
-  return APIuser.get("/user/forgotpassword/sendpassword/:id")
+  return APIuser.patch("/user/forgotpassword/sendpassword/:id")
     .then((res) => res)
     .catch((error) => error);
 };

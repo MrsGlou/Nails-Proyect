@@ -1,0 +1,15 @@
+.appointment_selected_date_container {
+  height: 76.5vh;
+}
+
+.appointment_tittle {
+  margin-top: 10px;
+  color: var(--fourth-color);
+}
+
+.hour_appointment_container {
+  margin: 10px;
+}
+.user_appointment_container {
+  margin: 10px;
+}

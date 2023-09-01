@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getServices } from "../../services/API_services/service.service";
 import { Link, NavLink } from "react-router-dom";
+import { useAuth } from "../../contexts/authContext";
 import { UseDeleteServiceError } from "../../hooks/UseDeleteServiceError";
 import DeleteIcon from "@mui/icons-material/Delete";
 import EditIcon from "@mui/icons-material/Edit";
@@ -9,19 +10,19 @@ import "./Services.css";
 
 const Services = () => {
   const [services, setServices] = useState([]);
+  const { user } = useAuth();
+
+  const fetchServices = async () => {
+    const response = await getServices();
+    setServices(response.data);
+  };
 
   useEffect(() => {
-    const fetchServices = async () => {
-      const response = await getServices();
-      setServices(response.data);
-    };
     fetchServices();
   }, []);
 
   const handleSubmit = async (serviceToDelete) => {
-    UseDeleteServiceError(serviceToDelete);
-    services.splice(services.indexOf(serviceToDelete), 1);
-    setServices(services);
+    UseDeleteServiceError(serviceToDelete, fetchServices);
   };
 
   return (
@@ -30,15 +31,18 @@ const Services = () => {
         className="create_service_btn"
         to="/platform/services/newservice"
       >
-        <Button
-          sx={{
-            backgroundColor: "#dc136c",
-            ":hover": { backgroundColor: "#f991cc" },
-          }}
-          variant="contained"
-        >
-          Añadir servicio
-        </Button>
+        {user?.rol === "admin" ||
+          (user?.rol === "superAdmin" && (
+            <Button
+              sx={{
+                backgroundColor: "#dc136c",
+                ":hover": { backgroundColor: "#f991cc" },
+              }}
+              variant="contained"
+            >
+              Añadir servicio
+            </Button>
+          ))}
       </NavLink>{" "}
       <section>
         <div className="service_type_names">
@@ -55,26 +59,29 @@ const Services = () => {
               <h4>{service.price} €</h4>
               <h4>{service.time} minutes</h4>
             </div>
-            <div className="service_type_button">
-              {" "}
-              <Link to={`/platform/services/update/${service._id}`}>
-                <EditIcon
-                  sx={{
-                    color: "#dc136c",
-                    ":hover": { color: "#f991cc" },
-                  }}
-                  className="update_service"
-                />
-              </Link>
-              <DeleteIcon
-                sx={{
-                  color: "#dc136c",
-                  ":hover": { color: "#f991cc" },
-                }}
-                className="delete_service"
-                onClick={() => handleSubmit(service)}
-              />
-            </div>
+            {user?.rol === "admin" ||
+              (user?.rol === "superAdmin" && (
+                <div className="service_type_button">
+                  {" "}
+                  <Link to={`/platform/services/update/${service._id}`}>
+                    <EditIcon
+                      sx={{
+                        color: "#dc136c",
+                        ":hover": { color: "#f991cc" },
+                      }}
+                      className="update_service"
+                    />
+                  </Link>
+                  <DeleteIcon
+                    sx={{
+                      color: "#dc136c",
+                      ":hover": { color: "#f991cc" },
+                    }}
+                    className="delete_service"
+                    onClick={() => handleSubmit(service)}
+                  />
+                </div>
+              ))}
           </div>
         ))}
       </section>

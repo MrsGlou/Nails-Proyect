@@ -1,7 +1,7 @@
 import { Alert, Stack } from "@mui/material";
 import Swal from "sweetalert2/dist/sweetalert2.all.js";
 
-export const UseGetAppointments = (res, setRes) => {
+export const UseGetAppointmentsError = (res, setRes) => {
   //! -------- 200 ={ updateUser: true, sendPassword: true}
   if (res?.status == 200) {
     setRes(() => ({}));

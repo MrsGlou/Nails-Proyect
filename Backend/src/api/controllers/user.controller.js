@@ -205,6 +205,7 @@ const login = async (req, res, next) => {
 const forgotPassword = async (req, res, next) => {
   try {
     const { email } = req.body;
+
     const userDB = await User.findOne({ email });
     if (userDB) {
       return res.redirect(

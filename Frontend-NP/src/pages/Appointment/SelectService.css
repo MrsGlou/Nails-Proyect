@@ -19,14 +19,14 @@
   font-size: 24px;
 }
 
-.services_type {
+.appointment_services_type {
   display: flex;
   align-items: start;
   flex-direction: column;
   gap: 5px;
 }
 
-.service_type {
+.appointment_service_type {
   display: grid;
   grid-template-columns: 500px 50px 1fr;
   align-items: center;

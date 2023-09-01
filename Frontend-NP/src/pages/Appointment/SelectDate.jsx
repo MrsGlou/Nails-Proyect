@@ -17,7 +17,7 @@ const SelectDate = () => {
   const [selectedTime, setSelectedTime] = useState(null);
   const [allTimesByUsers, setAllTimesByUsers] = useState(null);
   const [idsAndUsernames, setIdsAndUsernames] = useState(new Map());
-  const [userNames, setUserNames] = useState([]); 
+  const [userNames, setUserNames] = useState([]);
 
   const handleChange = async (newValue) => {
     // Formatear la fecha seleccionada como una cadena en el formato deseado
@@ -44,15 +44,14 @@ const SelectDate = () => {
     const response = await getAvailableAppointments(custonFormData);
     const employeesTimes = response.data;
     setAllTimesByUsers(employeesTimes);
-   
 
     //employeesTimes.forEach((employee) => {});
 
     const times = Object.values(response.data);
-    
+
     const allEmployeesTime = [...times[0], ...times[1]];
     const finalEmployeesTime = deleteDuplicateTimes(allEmployeesTime);
-    finalEmployeesTime.sort(); 
+    finalEmployeesTime.sort();
 
     setAvailables(finalEmployeesTime);
     setSend(false);
@@ -70,36 +69,33 @@ const SelectDate = () => {
   }, []);
 
   useEffect(() => {
-
     if (initialRender) {
       setInitialRender(false);
       return;
     }
 
-    const userById = async() => {
+    const userById = async () => {
       const userIds = identifyUsers();
       const idsAndUsernames = [];
       for (const userId of userIds) {
         setSend(true);
         const response = await getUserByID(userId);
-        idsAndUsernames.push({id: userId, name:response.data.name});
-      
+        idsAndUsernames.push({ id: userId, name: response.data.name });
+
         setSend(false);
       }
-      setUserNames(idsAndUsernames.map(idAndUserName => idAndUserName.name));
+      setUserNames(idsAndUsernames.map((idAndUserName) => idAndUserName.name));
       setIdsAndUsernames(idsAndUsernames);
-    }
+    };
     if (selectedTime && allTimesByUsers) {
       userById();
     }
-  
-
-  }, [selectedTime, allTimesByUsers, initialRender])
+  }, [selectedTime, allTimesByUsers, initialRender]);
 
   const handleTimeSelected = (time) => {
-    localStorage.setItem("appointmentStart", time)
+    localStorage.setItem("appointmentStart", time);
     setSelectedTime(time);
-  }
+  };
 
   const identifyUsers = () => {
     let userIds = [];
@@ -111,19 +107,18 @@ const SelectDate = () => {
     }
 
     return userIds;
-  }
+  };
 
   const handleUserSelect = (userName) => {
-    const userandIds = idsAndUsernames.find (id => id.name === userName)
-   
-      if (userandIds) {
-        localStorage.setItem("employee", userandIds.id);
-      }
+    const userandIds = idsAndUsernames.find((id) => id.name === userName);
+
+    if (userandIds) {
+      localStorage.setItem("employee", userandIds.id);
     }
-  
+  };
 
   return (
-    <div>
+    <div className="appointment_selected_date_container">
       <h2 className="appointment_tittle">Selecciona día</h2>
       <LocalizationProvider dateAdapter={AdapterDayjs}>
         <DateCalendar
@@ -133,8 +128,13 @@ const SelectDate = () => {
           onChange={handleChange}
         />
       </LocalizationProvider>
-      <h2 className="appointment_tittle">Selecciona la hora de la cita</h2>
+      {availables.length > 0 ? (
+        <h2 className="appointment_tittle">Selecciona la hora de la cita</h2>
+      ) : (
+        ""
+      )}
       <Box
+        className="hour_appointment_container"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -144,13 +144,36 @@ const SelectDate = () => {
           },
         }}
       >
-        <ButtonGroup variant="contained">
+        <ButtonGroup
+          variant="text"
+          size="large"
+          color="secondary"
+          sx={{
+            display: "flex",
+            flexDirection: "wrap",
+            flexWrap: "wrap",
+          }}
+        >
           {availables?.map((time, index) => (
-            <Button onClick={() => handleTimeSelected(time)} key={index}>{time}</Button>
+            <Button
+              sx={{
+                ":hover": { backgroundColor: "#f991cc" },
+              }}
+              onClick={() => handleTimeSelected(time)}
+              key={index}
+            >
+              {time}
+            </Button>
           ))}
         </ButtonGroup>
       </Box>
+      {userNames.length > 0 ? (
+        <h2 className="appointment_tittle">Selecciona una empleada</h2>
+      ) : (
+        ""
+      )}
       <Box
+        className="user_appointment_container"
         sx={{
           display: "flex",
           flexDirection: "column",
@@ -160,9 +183,26 @@ const SelectDate = () => {
           },
         }}
       >
-        <ButtonGroup variant="contained">
+        <ButtonGroup
+          variant="text"
+          size="large"
+          color="secondary"
+          sx={{
+            display: "flex",
+            flexDirection: "wrap",
+            flexWrap: "wrap",
+          }}
+        >
           {userNames?.map((userName, index) => (
-            <Button onClick={() => handleUserSelect(userName)} key={index}>{userName}</Button>
+            <Button
+              sx={{
+                ":hover": { backgroundColor: "#f991cc" },
+              }}
+              onClick={() => handleUserSelect(userName)}
+              key={index}
+            >
+              {userName}
+            </Button>
           ))}
         </ButtonGroup>
       </Box>

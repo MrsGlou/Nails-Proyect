@@ -28,7 +28,7 @@ const create = async (req, res, next) => {
       res.status(404).send('El empleado no existe.');
     }
 
-    const servicesIds = req.body.service
+    const servicesIds = req.body.service;
     const services = await Service.find({
       _id: { $in: servicesIds },
     });
@@ -46,11 +46,11 @@ const create = async (req, res, next) => {
       });
     }
 
-    
-    const startTime = new Date(`1970-01-01T${req.body.appointmentStart}:00`).getTime();
-    let endTime = new Date( startTime + totalTime * 60000).toLocaleTimeString();
-    endTime = endTime.slice(0,5)
-    
+    const startTime = new Date(
+      `1970-01-01T${req.body.appointmentStart}:00`
+    ).getTime();
+    let endTime = new Date(startTime + totalTime * 60000).toLocaleTimeString();
+    endTime = endTime.slice(0, 5);
 
     const newAppointment = new Appointment({
       ...req.body,
@@ -62,16 +62,15 @@ const create = async (req, res, next) => {
     });
 
     try {
-      console.log(newAppointment)
+      console.log(newAppointment);
       const createAppointment = await newAppointment.save();
-      
+
       if (createAppointment) {
         const user = await User.findById(req.body.user);
-        let updateUser;
 
         try {
           user.appointment.push(newAppointment._id);
-          updateUser = await User.findByIdAndUpdate(req.body.user, user);
+          await User.findByIdAndUpdate(req.body.user, user);
         } catch (error) {
           return next(error);
         }
@@ -81,7 +80,7 @@ const create = async (req, res, next) => {
           from: email,
           to: req.body.email,
           subject: 'Tu cita ha sido registrada con exito',
-          text: `Hola ${req.body.name}, hemos registrado tu cita para el día ${req.body.appointmentStart}`,
+          text: `Hola ${req.body.name}, hemos registrado tu cita para el día ${req.body.selectedDate} a las ${req.body.appointmentStart}. Muchas gracias por confiar en moon manicure`,
         };
 
         transporter.sendMail(mailOptions, (error, info) => {
@@ -109,7 +108,6 @@ const create = async (req, res, next) => {
     );
   }
 };
-
 
 //--------- VERIFY APPOINTMENT ---------//
 const verifyOutside = async (req, res, next) => {
@@ -173,13 +171,18 @@ const verifyOutside = async (req, res, next) => {
 //--------- CLOSED APPOINTMENT ---------//
 const closedAppointment = async (req, res, next) => {
   try {
-    const { _id } = req.params;
-    const appointmentExists = await Appointment.findById(_id);
+    const { id } = req.params;
+
+    const appointmentExists = await Appointment.findById(id);
+
     if (!appointmentExists) {
       return res.status(404).json('This appointmentn dont exists');
     } else {
-      appointmentExists.state = 'closed';
-      return res.stuatus(200).json('Status change to closed');
+      await Appointment.findByIdAndUpdate(id, {
+        state: 'closed',
+      });
+
+      return res.status(200).json(appointmentExists);
     }
   } catch (error) {
     return next(
@@ -224,8 +227,7 @@ const getAvailableAppointment = async (req, res, next) => {
     //Traaemos los servicios que el cliente solicita y miramos el timepo total
     const date = req.body.selectedDate;
     const servicesIds = req.body.selectedServices;
-    console.log(servicesIds)
-  
+
     const dayNumberToDayString = (dayIndex) => {
       return [
         'Sunday',
@@ -286,7 +288,7 @@ const getAvailableAppointment = async (req, res, next) => {
 
       //Miramos que el dia sea entre diario para todas las horas y los sabados solo por la mañana
 
-      if (day !== 'Saturday' && 'Sunday') {
+      if (day !== 'Saturday' && day !== 'Sunday') {
         times.set('09:00', true);
         times.set('09:30', true);
         times.set('10:00', true);
@@ -380,7 +382,7 @@ const getAvailableAppointment = async (req, res, next) => {
     }
     const finalObj = Object.fromEntries(finalMap);
 
-    return res.status(200).json( finalObj);
+    return res.status(200).json(finalObj);
   } catch (error) {
     return next(
       setError(
@@ -414,9 +416,13 @@ const getAll = async (req, res, next) => {
 const getByDay = async (req, res, next) => {
   try {
     const date = req.body.date;
-    const appointmentsByDay = await Appointment.find({ day: date }).populate("user").populate("service");
+    const appointmentsByDay = await Appointment.find({ day: date })
+      .populate('user')
+      .populate('service')
+      .sort({ appointmentStart: 1 });
+
     if (appointmentsByDay.length > 0) {
-      return res.status(200).json( appointmentsByDay );
+      return res.status(200).json(appointmentsByDay);
     } else {
       return res.status(200).json(appointmentsByDay);
     }

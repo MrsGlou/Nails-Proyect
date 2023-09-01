@@ -21,18 +21,19 @@
   display: grid;
   grid-template-columns: 700px 450px 120px 130px;
   gap: 5px;
-  color: var(--third-color);
-}
-
-.service_type_names > h2 {
-  text-decoration: underline;
+  color: var(--primary-color);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  background-color: var(--third-color);
 }
 
 .service_type {
   display: flex;
   justify-content: space-around;
   align-items: end;
-  margin: 0 20px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 2px 5px -1px,
+    rgba(0, 0, 0, 0.3) 0px 1px 3px -1px;
+  padding: 10px;
 }
 
 .service_type_text_inside {

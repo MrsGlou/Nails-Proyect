@@ -1,11 +1,11 @@
 .appointment_form {
   background: linear-gradient(var(--fifth-color), var(--third-color));
+  max-height: 1500px;
 }
 
 .progressbar {
   padding: 15px 0px;
   overflow: hidden;
-  /* CSS counters to number the steps */
   counter-reset: step;
 }
 
@@ -28,7 +28,8 @@
   font-size: 20px;
   color: var(--second-color);
   background: var(--firts-color);
-  border-radius: 3px;
+  border-radius: 50%;
+  padding: 5px;
   margin: 0 auto 5px auto;
 }
 
@@ -54,10 +55,10 @@
   color: var(--firts-color);
 }
 
-.btn_form_data_container{
-  padding: 0  0 20px 0;
+.btn_form_data_container {
+  padding: 0 0 45px 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 20px
+  gap: 20px;
 }

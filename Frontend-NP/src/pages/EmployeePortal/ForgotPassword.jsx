@@ -13,7 +13,6 @@ const ForgotPassword = () => {
   const { handleSubmit, register } = useForm();
 
   const formSubmit = async (formData) => {
-    console.log(formData);
     setSend(true);
     setRes(await forgotPasswordUser(formData));
     setSend(false);
@@ -26,8 +25,7 @@ const ForgotPassword = () => {
 
   //Reenviamos al login
   if (forgotOk) {
-    console.log("envio de la contraseña correcto");
-    return <Navigate to="/login" />;
+    return <Navigate to="/platform/login" />;
   }
 
   return (

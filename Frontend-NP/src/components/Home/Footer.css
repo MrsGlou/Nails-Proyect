@@ -38,3 +38,13 @@
   height: 7vh;
   background-color: var(--second-color);
 }
+.footer_links {
+  display: flex;
+  margin: 5px;
+  gap: 10px;
+}
+
+.footer_link {
+  text-decoration: none;
+  color: var(--second-color);
+}
