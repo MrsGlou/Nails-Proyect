@@ -52,7 +52,7 @@ const FormProfile = () => {
               name="name"
               placeholder="Name"
               autoComplete="false"
-              value={user.user}
+              defaultValue={user.user}
               {...register("name")}
             />
           </div>
@@ -64,7 +64,7 @@ const FormProfile = () => {
               name="surname"
               placeholder="Surname"
               autoComplete="false"
-              value={user.surname}
+              defaultValue={user.surname}
               {...register("surname")}
             />
           </div>

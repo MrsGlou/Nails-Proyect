@@ -6,9 +6,11 @@ import NavbarEmployee from "./pages/EmployeePortal/NavbarEmployee";
 
 function App() {
   const { user } = useAuth();
+  
   return (
     <>
       {user == null ? <Navbar /> : <NavbarEmployee />}
+      
       <main>
         <Outlet />
       </main>

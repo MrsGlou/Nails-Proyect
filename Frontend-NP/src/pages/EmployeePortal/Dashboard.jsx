@@ -14,6 +14,7 @@ export const Dashboard = () => {
   const [appointmentsByDay, setAppointmentsByDay] = useState([]);
   const [res, setRes] = useState({});
   const [send, setSend] = useState(false);
+  const [changeAppointment, setChangeAppoitnment] = useState (false);
 
   const appointmentsToday = async (custonFormData) => {
     setSend(true);
@@ -82,6 +83,7 @@ export const Dashboard = () => {
           <h3>Empleada</h3>
           <h3>Servicios</h3>
           <h3>Cerrar</h3>
+          
         </div>
         <div className="appointmet_by_day">
           {appointmentsByDay.length > 0
